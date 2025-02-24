@@ -6,8 +6,8 @@ function Nav() {
     const [query, setQuery] = useState("")
   return (
     <div>
-        <nav className='bg-blue-950 text-white py-3 px-5 flex justify-between items-center fixed top-0 w-full'>
-            <Link to="/"  className='font-bold text-4xl'>Movie App</Link>
+        <nav className='bg-blue-950 text-white py-3 px-5 flex justify-between items-center fixed top-0 w-full z-50'>
+            <Link to='/'  className='font-bold text-4xl'>Movie App</Link>
             <form action="/filter"  className='w-xl bg-white h-10 rounded-3xl border  flex justify-between overflow-hidden'>
                 <input
                     type='search' 
@@ -22,9 +22,10 @@ function Nav() {
                 </button>
             </form>
             <div className='flex gap-10'>
-                <Link to="/your_list"> <List  size={30} /> </Link>
-                <Link to="/addMovie" className=''> <CirclePlus  size={30} /> </Link>
-                <Link to="/favorites"><Heart size={30}/></Link>
+                {/* your_list */}
+                <Link to="/movies/your_list"> <List  size={30} /> </Link> 
+                {/* <Link to="/addMovie" className=''> <CirclePlus  size={30} /> </Link>
+                <Link to="/favorites"><Heart size={30}/></Link> */}
             </div>
         </nav>
     </div>

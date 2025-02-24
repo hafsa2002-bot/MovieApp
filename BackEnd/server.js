@@ -34,24 +34,6 @@ app.get("/movies", async (req, res) => {
     }
 })
 
-/*
-app.post("/addMovie", async (req, res) => {
-    try{
-        console.log("Received data: ", req.body)
-        const addMovie = new Movie({ 
-            movieName: req.body.movieName,
-            movieDate : req.body.movieDate
-        })
-        const newMovie = await addMovie.save()
-        console.log("this is the new person:", newMovie)
-        res.json(newMovie)
-    } catch (err){
-        console.log("ERROR: ", err)
-        res.status(500).json({error: "Internal Server Error"})
-    }
-})
-*/
-
 // search a movie
 app.get("/search", async(req, res) => {
     try {
@@ -106,7 +88,46 @@ app.get("/list", async (req, res) => {
         res.json(listMovies)
     } catch(err){
         console.log("Error: ", err)
-        res.status(500).json({err: "Internal server error"})
+        res.status(500).json({error: "Internal server error"})
+    }
+})
+
+// get details of a movie by id
+app.get("/movies/:id", async (req, res) => {
+    try{
+        const movieById = await Movie.find({_id: req.params.id})
+        res.send(movieById[0])
+    }catch(err){
+        console.log("ERROR : ", err)
+        res.status(500).json({error: ""})
+    }
+})
+
+// update isFavorite variable
+app.put("/movies/favorite/:fvrt_id", async (req, res) => {
+    try{
+        const updateFavorite = await Movie.findOneAndUpdate(
+            { _id: req.params.fvrt_id }, 
+            {isFavorite: req.body.isFavorite}, 
+            {new:true})
+        if (!updateFavorite) {
+            return res.status(404).json({ error: "Movie not found" });
+        }
+        res.json(updateFavorite)
+    } catch(error) {
+        console.log("ERROR: ",error)
+        res.status(500).json({error: "Internal Server Error"})
+    }
+})
+
+// get favorites
+app.get("/favorites", async (req, res) => {
+    try{
+        const favorites = await Movie.find({isFavorite: true})
+        res.send(favorites)
+    }catch(error){
+        console.log("ERROR : ", error)
+        res.status(500).json({error: "Internal server Error"})
     }
 })
 

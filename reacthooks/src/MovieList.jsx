@@ -16,7 +16,7 @@ function MovieList() {
     <div className='mt-20 flex flex-wrap gap-10 px-4 justify-between'>
         
         {backendData.results 
-            ? backendData.results.map((v, index) => <MovieCard data = {v}/>)
+            ? backendData.results.map((v, index) => <MovieCard data = {v} key={index} />)
             : <h1>data not found</h1>
         }
         
