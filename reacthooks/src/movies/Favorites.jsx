@@ -7,14 +7,29 @@ import {Link} from 'react-router-dom'
 
 function Favorites() {
     const [favorites, setFavorites] = useState([])
+    const [list, setList] = useState([])
     useEffect(() => {
         axios.get("http://localhost:5000/favorites")
         .then(response => {
             setFavorites(response.data)
         })
         .catch(error => console.log("ERROR : ", error))
-    }, [])
-    
+    }, [favorites])
+    const addToFavorite = async (movieId, currentFavoriteStatus) => {
+        try{
+            const response = await axios.put(`http://localhost:5000/movies/favorite/${movieId}`, {
+                isFavorite: !currentFavoriteStatus
+            })
+            console.log("response :", response)
+            setList(prevList =>
+                prevList.map(movie =>
+                    movie._id === movieId ? { ...movie, isFavorite: !currentFavoriteStatus } : movie
+                )
+            );
+        }catch(err) {
+            console.log("ERROR : ", err)
+        }
+    }
     
   return (
     <div className=' flex flex-wrap gap-10  px-7 mt-10'>
@@ -27,9 +42,9 @@ function Favorites() {
                         alt = {v.movieName}
                         className='h-[420px] w-full cursor-pointer' />
                     </Link>
-                    <div className='w-12 h-12 border-2 border-blue-600 absolute top-4 right-4 flex justify-center items-center rounded-full'>
-                        <button className='cursor-pointer'>
-                            <Heart size={30} color= "blue" className='' />
+                    <div className='w-12 h-12 bg-gray-300  absolute top-4 right-4 flex justify-center items-center rounded-full'>
+                        <button onClick={()=>  addToFavorite(v._id, v.isFavorite)}  className='cursor-pointer'>
+                            <Heart  fill={v.isFavorite ? "#c50d0d" : "#c7c6c6"} size={32} strokeWidth={v.isFavorite ? 0 : 1.2} className='' />
                         </button>
                     </div>
                     <p className='text-2xl text-center font-medium'>{v.movieName}</p>

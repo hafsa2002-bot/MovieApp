@@ -44,9 +44,9 @@ function YourMovieList() {
                         alt = {v.movieName}
                         className='h-[420px] w-full cursor-pointer' />
                     </Link>
-                    <div className={`w-12 h-12 border-2  absolute top-4 right-4 flex justify-center items-center rounded-full hover:bg-blue-400  ${v.isFavorite ? blue : white} `}>
+                    <div className={`w-12 h-12  bg-gray-300  absolute top-4 right-4 flex justify-center items-center rounded-full   `}>
                         <button onClick={()=>  addToFavorite(v._id, v.isFavorite)} className='cursor-pointer'>
-                            <Heart size={30} color={v.isFavorite ? "blue" : "white"} className='' />
+                            <Heart fill={v.isFavorite ? "#c50d0d" : "#c7c6c6"} size={32} strokeWidth={v.isFavorite ? 0 : 1.2} className='' />
                         </button>
                     </div>
                     <p className='text-2xl text-center font-medium'>{v.movieName}</p>

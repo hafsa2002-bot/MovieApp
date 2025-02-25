@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import MovieCard from './MovieCard'
+import SpinnerLoader from './SpinnerLoader'
 
 function MovieList() {
     const [backendData, setBackendData] = useState([])
@@ -17,7 +18,7 @@ function MovieList() {
         
         {backendData.results 
             ? backendData.results.map((v, index) => <MovieCard data = {v} key={index} />)
-            : <h1>data not found</h1>
+            : <SpinnerLoader/>
         }
         
     </div>
