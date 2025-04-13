@@ -8,7 +8,8 @@ const port = process.env.PORT || 5000
 
 // const uri = require("./mongo_uri")
 let mongoose = require('mongoose')
-uri = process.env.mongo_uri
+require('dotenv').config();
+const uri = process.env.mongo_uri
 
 const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
@@ -19,9 +20,13 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"))
 
 // connect to mongo db
-mongoose.connect(uri)
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
     .then(() => {console.log("MongoDB connected")})
     .catch((err) => console.log("ERROR: ", err))
+console.log("Mongo URI  -:", uri);
 
 const Movie = require('./models/Movie.js') 
 
