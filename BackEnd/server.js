@@ -20,13 +20,9 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"))
 
 // connect to mongo db
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+mongoose.connect(uri)
     .then(() => {console.log("MongoDB connected")})
     .catch((err) => console.log("ERROR: ", err))
-console.log("Mongo URI  -:", uri);
 
 const Movie = require('./models/Movie.js') 
 
