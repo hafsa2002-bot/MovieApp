@@ -32,7 +32,7 @@ function MovieDetails(props) {
     <div className='m-10'>
         <div className='flex gap-20 items-center justify-center'>
             {
-                (!showTrailer ) && <img src={`http://localhost:5000${movie.moviePhoto}`} className='rounded-lg' />
+                (!showTrailer ) && <img src={`${backendUrl}${movie.moviePhoto}`} className='rounded-lg' />
             }
             
             <div className='flex flex-col gap-4'>

@@ -39,7 +39,7 @@ function Favorites() {
                 <div key={v._id} className='w-2xs rounded-3xl overflow-hidden border border-gray-400 relative'>
                     <Link to={`/movies/${v._id}`} >
                         <img 
-                        src={`http://localhost:5000${v.moviePhoto}`}
+                        src={`${backendUrl}${v.moviePhoto}`}
                         alt = {v.movieName}
                         className='h-[420px] w-full cursor-pointer' />
                     </Link>

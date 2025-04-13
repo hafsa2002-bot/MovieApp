@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000
 let mongoose = require('mongoose')
 require('dotenv').config();
 const uri = process.env.mongo_uri
-
+console.log("uri = ", uri)
 const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
 
