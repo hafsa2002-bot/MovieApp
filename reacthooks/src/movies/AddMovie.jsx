@@ -8,7 +8,7 @@ function AddMovie() {
     const [movieDate, setMovieDate] = useState("");
     const [moviePhoto, setMoviePhoto] = useState(null);
     const [trailer, setTrailer] = useState("")
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
 
     const navigate = useNavigate()
 

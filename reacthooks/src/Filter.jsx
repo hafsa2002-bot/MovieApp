@@ -9,8 +9,8 @@ function Filter() {
     const [searchParams] = useSearchParams()
     const query = searchParams.get("query")
     const [movies, setMovies] = useState([])
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
-
+    // const backendUrl = 'https://nodejs-production-5727.up.railway.app';
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
     useEffect(() => {
         if(query){
             fetchMovies(query)

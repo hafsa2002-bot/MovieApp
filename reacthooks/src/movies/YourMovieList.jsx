@@ -8,7 +8,8 @@ function YourMovieList() {
     const white = 'border-white'
     const blue = 'border-blue-700'
     const [list, setList] = useState([])
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
+    // const backendUrl = 'https://nodejs-production-5727.up.railway.app';
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
     useEffect(() => { 
         axios.get(`${backendUrl}/list`)
         .then(response => {

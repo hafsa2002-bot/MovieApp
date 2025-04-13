@@ -6,7 +6,8 @@ import MovieCard from './MovieCard'
 function MovieList() {
     const [backendData, setBackendData] = useState([])
     const [error, setError] =useState(null)
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
+    // const backendUrl = 'https://movieapp-production-5727.up.railway.app';
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
     useEffect(() => {
         axios.get(`${backendUrl}/movies`)
         .then(response => {

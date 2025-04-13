@@ -8,7 +8,8 @@ function MovieDetails(props) {
     const {id} = useParams()
     const [movie, setMovie] = useState([])
     const [showTrailer, setShowTrailer] = useState(false)
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
+    // const backendUrl = 'https://nodejs-production-5727.up.railway.app';
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
     useEffect(() => {
         console.log("movie: ", movie)
         axios.get(`${backendUrl}/movies/${id}`)

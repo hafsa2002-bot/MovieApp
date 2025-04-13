@@ -8,8 +8,8 @@ import {Link} from 'react-router-dom'
 function Favorites() {
     const [favorites, setFavorites] = useState([])
     const [list, setList] = useState([])
-    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
-    useEffect(() => {
+    const backendUrl = 'https://movieapp-production-5727.up.railway.app';
+        useEffect(() => {
         axios.get(`${backendUrl}/favorites`)
         .then(response => {
             setFavorites(response.data)
