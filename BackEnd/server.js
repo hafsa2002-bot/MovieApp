@@ -12,6 +12,7 @@ let mongoose = require('mongoose')
 const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
 
+
 app.use(cors())
 app.use(express.json());
 app.use("/uploads", express.static("uploads"))
@@ -22,6 +23,10 @@ mongoose.connect(uri)
     .catch((err) => console.log("ERROR: ", err))
 
 const Movie = require('./models/Movie.js') 
+
+app.get('/', (req, res) => {
+    res.send('🎉 Backend is working!');
+});
 
 app.get("/movies", async (req, res) => {
     // search how to use axios inside a get method
