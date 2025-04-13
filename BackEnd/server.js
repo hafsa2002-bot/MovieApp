@@ -99,6 +99,15 @@ app.get("/list", async (req, res) => {
     }
 })
 
+app.get("/test-db", async (req, res) => {
+    try {
+      await mongoose.connection.db.admin().ping();
+      res.send("✅ MongoDB connection working");
+    } catch (err) {
+      res.status(500).send("❌ MongoDB not connected");
+    }
+  });
+
 // get details of a movie by id
 app.get("/movies/:id", async (req, res) => {
     try{

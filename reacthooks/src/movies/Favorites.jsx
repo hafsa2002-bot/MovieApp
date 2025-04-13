@@ -18,7 +18,7 @@ function Favorites() {
     }, [favorites])
     const addToFavorite = async (movieId, currentFavoriteStatus) => {
         try{
-            const response = await axios.put(`http://localhost:5000/movies/favorite/${movieId}`, {
+            const response = await axios.put(`${backendUrl}/movies/favorite/${movieId}`, {
                 isFavorite: !currentFavoriteStatus
             })
             console.log("response :", response)
