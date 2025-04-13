@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"))
 
 // connect to mongo db
-mongoose.connect(uri)
+mongoose.connect(process.env.mongo_uri)
     .then(() => {console.log("MongoDB connected")})
     .catch((err) => console.log("ERROR: ", err))
 
