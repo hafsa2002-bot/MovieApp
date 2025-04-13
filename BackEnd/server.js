@@ -6,8 +6,9 @@ const axios = require('axios')
 const app = express()
 const port = process.env.PORT || 5000
 
-const uri = require("./mongo_uri")
+// const uri = require("./mongo_uri")
 let mongoose = require('mongoose')
+uri = process.env.mongo_uri
 
 const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
