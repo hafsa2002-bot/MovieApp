@@ -32,7 +32,7 @@ function Favorites() {
     }
     
   return (
-    <div className=' flex flex-wrap gap-10  px-7 mt-10'>
+    <div className='mb-10 flex flex-wrap gap-10  px-7 mt-10'>
         {
             favorites ? favorites.map((v, index)=> (
                 <div key={v._id} className='w-2xs rounded-3xl overflow-hidden border border-gray-400 relative'>

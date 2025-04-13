@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import {Play} from 'lucide-react'
 import axios from 'axios'
+import PageNotFound from '../PageNotFound'
 
 function MovieDetails(props) {
     const {id} = useParams()
     const [movie, setMovie] = useState([])
     const [showTrailer, setShowTrailer] = useState(false)
     useEffect(() => {
+        console.log("movie: ", movie)
         axios.get(`http://localhost:5000/movies/${id}`)
         .then(response => {
             // console.log("this is the details of the movie", response.data)
@@ -16,7 +18,7 @@ function MovieDetails(props) {
                     const videoId = movieData.trailer.split("v=")[1]?.split("&")[0];
                     movieData.trailer = `https://www.youtube.com/embed/${videoId}`;
                 }
-
+                
                 setMovie(movieData);
         })
         .catch(err => console.log("Error : ", err))
@@ -24,6 +26,7 @@ function MovieDetails(props) {
     const Trailer = () => {
         setShowTrailer(true)
     }
+    if(movie.length === 0) return <PageNotFound/>
   return (
     <div className='m-10'>
         <div className='flex gap-20 items-center justify-center'>

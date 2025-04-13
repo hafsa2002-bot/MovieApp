@@ -4,7 +4,7 @@ const multer = require('multer')
 const path = require('path')
 const axios = require('axios')
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 const uri = require("./mongo_uri")
 let mongoose = require('mongoose')

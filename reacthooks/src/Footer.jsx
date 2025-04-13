@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-4 mt-20 ">
+    <footer className="bg-gray-900 text-white py-4 ">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
             <p className="text-sm">&copy; {new Date().getFullYear()} MovieApp. All rights reserved.</p>
             <div className="flex space-x-4 mt-2 md:mt-0">

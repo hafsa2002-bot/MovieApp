@@ -1,14 +1,22 @@
 import React from 'react'
-import {Link, Outlet} from 'react-router-dom'
+import {NavLink, Outlet} from 'react-router-dom'
+
 
 function YourMovies() {
+  const style = "border font-semibold text-lg rounded-full px-5 py-2";
   return (
     <div>
-      <div className='mt-20 flex justify-center gap-14 mx-auto' >
-        <Link to='/movies/your_list' className='border border-blue-950 text-blue-950 font-semibold text-lg rounded-full px-4 py-1'>Movies</Link>
-        <Link to='/movies/addMovie' className='border border-blue-950 text-blue-950 font-semibold text-lg rounded-full px-4 py-1' >Add Movie</Link>
-        <Link to='/movies/favorites' className='border border-blue-950 text-blue-950 font-semibold text-lg rounded-full px-4 py-1' >Favorites</Link>
-      </div>
+      <ul className='mb-10 mt-23 flex justify-center items-center gap-14 mx-auto' >
+        <li >
+          <NavLink to='/movies/your_list' className={({ isActive }) => isActive ? `${style} text-white bg-blue-950` : `${style} text-blue-950 border border-blue-950`}>Movies</NavLink>
+        </li>
+        <li>
+          <NavLink to='/movies/addMovie'  className={({ isActive }) => isActive ? `${style} text-white bg-blue-950` : `${style} text-blue-950 border border-blue-950`} >Add Movie</NavLink>
+        </li>
+        <li >
+          <NavLink to='/movies/favorites'  className={({ isActive }) => isActive ? `${style} text-white bg-blue-950` : `${style} text-blue-950 border border-blue-950`} >Favorites</NavLink>
+        </li>
+      </ul>
       <Outlet/>
     </div>
   )

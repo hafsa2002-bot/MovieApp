@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import Nav from './Nav'
 import MovieCard from './MovieCard'
+import PageNotFound from './PageNotFound'
 
 function Filter() {
     const [searchParams] = useSearchParams()
@@ -29,11 +30,12 @@ function Filter() {
         <Nav/>
         <h2 className='mt-20 text-xl ml-4'>Results for: {query}</h2>
         <div className='mt-4 flex flex-wrap gap-10 px-4 justify-between'>
+        
             {movies.length > 0 ? (
                 movies.map((movie) => <MovieCard data = {movie} />)
             )
             :(
-                <p>No movies found .</p>
+                <PageNotFound/>
             )}
         </div>
     </>
