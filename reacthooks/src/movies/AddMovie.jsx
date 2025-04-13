@@ -8,6 +8,8 @@ function AddMovie() {
     const [movieDate, setMovieDate] = useState("");
     const [moviePhoto, setMoviePhoto] = useState(null);
     const [trailer, setTrailer] = useState("")
+    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
+
     const navigate = useNavigate()
 
     const handleFileChange = (event) => {
@@ -24,7 +26,7 @@ function AddMovie() {
         formData.append("trailer", trailer)
 
         try{
-            const response = await fetch("http://localhost:5000/addMovie", {
+            const response = await fetch(`${backendUrl}/addMovie`, {
                 method: "POST",
                 body: formData,
             })

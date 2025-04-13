@@ -9,6 +9,7 @@ function Filter() {
     const [searchParams] = useSearchParams()
     const query = searchParams.get("query")
     const [movies, setMovies] = useState([])
+    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
 
     useEffect(() => {
         if(query){
@@ -17,7 +18,7 @@ function Filter() {
     }, [query])
     const fetchMovies = async (query) => {
         try {
-            const response = await axios.get("http://localhost:5000/search", {
+            const response = await axios.get(`${backendUrl}/search`, {
                 params: {query},
             })
             setMovies(response.data.results)

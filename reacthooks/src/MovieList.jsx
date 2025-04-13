@@ -6,8 +6,9 @@ import MovieCard from './MovieCard'
 function MovieList() {
     const [backendData, setBackendData] = useState([])
     const [error, setError] =useState(null)
+    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
     useEffect(() => {
-        axios.get("http://localhost:5000/movies")
+        axios.get(`${backendUrl}/movies`)
         .then(response => {
             console.log("this is the list of movies: ", response.data)
             setBackendData(response.data)

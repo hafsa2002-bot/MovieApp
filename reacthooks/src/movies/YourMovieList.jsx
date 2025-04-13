@@ -8,8 +8,9 @@ function YourMovieList() {
     const white = 'border-white'
     const blue = 'border-blue-700'
     const [list, setList] = useState([])
+    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
     useEffect(() => { 
-        axios.get("http://localhost:5000/list")
+        axios.get(`${backendUrl}/list`)
         .then(response => {
             console.log("this is the list of movies from database: ", response.data)
             setList(response.data)
@@ -18,7 +19,7 @@ function YourMovieList() {
     }, [])
     const addToFavorite = async (movieId, currentFavoriteStatus) => {
         try{
-            const response = await axios.put(`http://localhost:5000/movies/favorite/${movieId}`, {
+            const response = await axios.put(`${backendUrl}/movies/favorite/${movieId}`, {
                 isFavorite: !currentFavoriteStatus
             })
             console.log("response :", response)
@@ -40,7 +41,7 @@ function YourMovieList() {
                 <div key={v._id} className='w-2xs rounded-3xl overflow-hidden border border-gray-400 relative'>
                     <Link to={`/movies/${v._id}`} >
                         <img 
-                        src={`http://localhost:5000${v.moviePhoto}`}
+                        src={`${backendUrl}${v.moviePhoto}`}
                         alt = {v.movieName}
                         className='h-[420px] w-full cursor-pointer' />
                     </Link>

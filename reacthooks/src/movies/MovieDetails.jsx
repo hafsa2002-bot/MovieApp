@@ -8,9 +8,10 @@ function MovieDetails(props) {
     const {id} = useParams()
     const [movie, setMovie] = useState([])
     const [showTrailer, setShowTrailer] = useState(false)
+    const backendUrl = 'https://nodejs-production-b438.up.railway.app';
     useEffect(() => {
         console.log("movie: ", movie)
-        axios.get(`http://localhost:5000/movies/${id}`)
+        axios.get(`${backendUrl}/movies/${id}`)
         .then(response => {
             // console.log("this is the details of the movie", response.data)
             const movieData = response.data;
