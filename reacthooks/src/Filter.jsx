@@ -28,7 +28,7 @@ function Filter() {
     }
   return (
     <>
-        <Nav/>
+        {/* <Nav/> */}
         <h2 className='mt-20 text-xl ml-4'>Results for: {query}</h2>
         <div className='mt-4 flex flex-wrap gap-10 px-4 justify-between'>
         
