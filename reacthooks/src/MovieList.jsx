@@ -33,8 +33,7 @@ function MovieList() {
     if(error) 
         return <h2 className='text-3xl font-semibold mt-70 bg-white text-center py-30'>Error:{error}</h2>
     return (
-    <div className='mt-96 pb-40 flex flex-wrap gap-10 px-4 justify-between '>
-        
+    <div className='mt-[490px] relative pt-4 bottom-32 bg-blend-multiply  pb-40 flex flex-wrap gap-10 px-4 justify-between    '>
         {backendData.results 
             ? backendData.results.map((v, index) => <MovieCard data = {v} key={index} />)
             : <SpinnerLoader/>

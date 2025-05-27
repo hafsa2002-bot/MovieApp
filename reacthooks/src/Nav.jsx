@@ -26,7 +26,7 @@ function Nav() {
             </div>
         </nav> */}
         {/* bg-[#0F0F0F] */}
-        <nav className=' px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full'>
+        <nav className='bg-[#0F0F0F]z px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full'>
             <div className='flex justify-center items-center gap-12'>
                 {/* logo */}
                 <div className='w-36 '>

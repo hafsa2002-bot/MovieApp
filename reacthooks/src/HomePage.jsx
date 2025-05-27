@@ -8,7 +8,7 @@ function HomePage() {
    
   return (
     <>
-    <div className='bg-[#0F0F0F]'>
+    <div className=''>
       {/* <img src='http://digiflex.themezinho.net/wp-content/uploads/2020/12/page-header-bg.jpg'
         className=' h-[600px] w-full  fixed top-0 -z-50'
       /> */}
@@ -20,8 +20,10 @@ function HomePage() {
         </div>
         <p className='text-white text-xl mt-5 font-normal'>All new released Hollywood and world movies here to watch</p>
       </div> */}
-      <img src='/images/HomePageBG.jpg' className=' h-screen w-full  absolute top-0 -z-50'/>
-      <div className='absolute -z-50 inset-0 bg-black opacity-20'></div>
+      <img src='/images/bgImage.png' className=' h-screen w-full  absolute shadow-black shadow-2xl  bottom-40 -z-50 '/>
+      {/* <div className='absolute -z-50 inset-0 bg-black opacity-20 mix-blend-multiply'></div> */}
+      <div className='absolute -z-50 inset-0 bg-gradient-to-t from-[#0F0F0F]  to-transparent opacity-90 mix-blend-multiply'></div>
+
       {/* <div className='relative top-50 left-15'>
         <div className=' flex items-end gap-3.5'>
           <p className=' text-6xl font-bold  text-white'>Movies</p>
@@ -29,8 +31,10 @@ function HomePage() {
         </div>
         <p className='text-white text-xl mt-5 font-normal'>All new released Hollywood and world movies here to watch</p>
       </div> */}
+      <div className='bg-[#0F0F0F] shadow-[#0F0F0F]  shadow-2xl '>
+        <MovieList/>
+      </div>
     </div>
-      <MovieList/>
     </>
   )
 }
