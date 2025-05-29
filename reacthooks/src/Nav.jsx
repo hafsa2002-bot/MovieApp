@@ -1,9 +1,18 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import {Heart, CirclePlus, List, Search} from 'lucide-react'
 
 function Nav() {
     const [query, setQuery] = useState("")
+    const [scrolled, setScrolled] = useState(false)
+    
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50)
+        }
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
   return (
     <div>
         {/* <nav className='bg-blue-950 text-white py-3 px-5 flex justify-between items-center fixed top-0 w-full z-50'>
@@ -26,7 +35,13 @@ function Nav() {
             </div>
         </nav> */}
         {/* bg-[#0F0F0F] */}
-        <nav className='bg-[#0F0F0F]z px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full'>
+        <nav 
+            // className=' px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full'
+            // scrolled ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
+            className={`px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full z-50 transition-all duration-300 ${
+                scrolled ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
+            }`}
+        >
             <div className='flex justify-center items-center gap-12'>
                 {/* logo */}
                 <div className='w-36 '>

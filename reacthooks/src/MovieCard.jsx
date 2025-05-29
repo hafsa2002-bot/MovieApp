@@ -14,7 +14,7 @@ function MovieCard(props) {
     //     </div>
     // </div>
     <div>
-      <img className='h-[420px] w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
+      <img className='h-72 w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
     </div>
   )
 }
