@@ -36,10 +36,14 @@ function Nav() {
         </nav> */}
         {/* bg-[#0F0F0F] */}
         <nav 
-            // className=' px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full'
-            // scrolled ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
+            
+            // className={`px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full z-50 transition-all duration-300 ${
+            //     scrolled  ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
+            // }`}
             className={`px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full z-50 transition-all duration-300 ${
-                scrolled ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
+                (window.location.pathname === "/" && !scrolled)
+                    ? "bg-transparent"
+                    : "bg-[#0F0F0F] shadow-md"
             }`}
         >
             <div className='flex justify-center items-center gap-12'>

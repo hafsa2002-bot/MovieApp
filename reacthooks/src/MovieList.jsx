@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import SpinnerLoader from './SpinnerLoader'
 import MovieCard from './MovieCard'
+import { ArrowRight, ChevronRight, Heart } from 'lucide-react'
 
 function MovieList() {
     const [backendData, setBackendData] = useState([])
@@ -46,17 +47,24 @@ function MovieList() {
     if(error) 
         return <h2 className='text-3xl font-semibold mt-70 bg-white text-center py-30'>Error:{error}</h2>
     return (
-        <div className='mt-[640px] relative bottom-44 pt-4  bg-blend-multiply   pb-40  px-10'>
+        <div className=' relative bottom-44 pt-4  bg-blend-multiply   pb-40  px-10'>
             {/* trending movies */}
             <section className='mb-12'>
-                <h1 className='text-white text-2xl font-semibold mb-5'>Trending Movies</h1>
+                <div className='flex items-center mb-5 justify-between'>
+                    <h1 className='text-white text-2xl font-semibold '>Trending Movies</h1>
+                    <div className='flex items-center gap-1.5 text-stone-300 pr-2 cursor-pointer '> See more <ArrowRight size={21} /></div>
+                </div>
                 <div  className='grid grid-cols-6'>
                     {
                         trendingMovies?.slice(0, 6).map((movie, index) => (
                             // <div>{movie}</div>
                             // <MovieCard data = {movie} key={index} />
-                            <div className='rounded-xl overflow-hidden h-64 w-48'>
+                            <div className=' relative rounded-xl overflow-hidden h-64 w-48'>
                                 <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}   />
+                                <div className='bg-gray-200 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2' >
+                                    {/* gray-200 => #e5e7eb */}
+                                    <Heart color="#1f2937" />
+                                </div>
                             </div>
                         ))
                     }
