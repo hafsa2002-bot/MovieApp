@@ -3,6 +3,7 @@ import axios from 'axios'
 import SpinnerLoader from './SpinnerLoader'
 import MovieCard from './MovieCard'
 import { ArrowRight, ChevronRight, Heart } from 'lucide-react'
+import MoviesWithFilter from './MoviesWithFilter'
 
 function MovieList() {
     const [backendData, setBackendData] = useState([])
@@ -32,14 +33,7 @@ function MovieList() {
             .catch(error => console.log("error: fetching trending movies", error))
     }
 
-    useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
-        .then(response => {
-            console.log("this is the list of movies: ", response.data)
-            setBackendData(response.data)
-        })
-        .catch(err => setError(err.message))
-    }, [])
+    
 
     useEffect(() => {
         getTrendingMoviesList()
@@ -52,7 +46,7 @@ function MovieList() {
             <section className='mb-12'>
                 <div className='flex items-center mb-5 justify-between'>
                     <h1 className='text-white text-2xl font-semibold '>Trending Movies</h1>
-                    <div className='flex items-center gap-1.5 text-stone-300 pr-2 cursor-pointer '> See more <ArrowRight size={21} /></div>
+                    <div className='flex items-center gap-1.5 text-stone-300 pr-2 cursor-pointer font-semibold'> See more <ArrowRight size={21} /></div>
                 </div>
                 <div  className='grid grid-cols-6'>
                     {
@@ -61,22 +55,21 @@ function MovieList() {
                             // <MovieCard data = {movie} key={index} />
                             <div className=' relative rounded-xl overflow-hidden h-64 w-48'>
                                 <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}   />
-                                <div className='bg-gray-200 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2' >
-                                    {/* gray-200 => #e5e7eb */}
-                                    <Heart color="#1f2937" />
+                                {/* <div className='bg-gray-200 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2' >
+                                    gray-200 => #e5e7eb 
+                                    <Heart color="#1f2937"  />
+                                </div> */}
+                                <div className="group bg-gray-200 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2 cursor-pointer">
+                                    <Heart
+                                        className="stroke-gray-800 group-hover:fill-red-500 group-hover:stroke-red-500 transition duration-100"
+                                    />
                                 </div>
                             </div>
                         ))
                     }
                 </div>
             </section>
-            <div className=' flex flex-wrap gap-10 justify-between    '>
-                {backendData.results 
-                    ? backendData.results.map((v, index) => <MovieCard data = {v} key={index} />)
-                    : <SpinnerLoader/>
-                }
-                
-            </div>
+            <MoviesWithFilter/>
         </div>
   )
 }
