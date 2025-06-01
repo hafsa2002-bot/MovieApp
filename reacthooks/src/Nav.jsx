@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {Heart, CirclePlus, List, Search} from 'lucide-react'
 
 function Nav() {
     const [query, setQuery] = useState("")
     const [scrolled, setScrolled] = useState(false)
+    const navigate = useNavigate()
     
     useEffect(() => {
         const handleScroll = () => {
@@ -54,13 +55,14 @@ function Nav() {
 
                 {/* pages */}
                 <div className='uppercase flex gap-7'>
-                    {/* <NavLink to="/" className={({isActive}) => isActive ? 'text-white' : 'text-stone-400' }>Home</NavLink>
-                    <NavLink to="/my_list"  className={({isActive}) => isActive ? 'text-white' : 'text-stone-400' } >My List</NavLink>
-                    <NavLink to="/favorites"  className={({isActive}) => isActive ? 'text-white' : 'text-stone-400' }>Favorites</NavLink>
-                    <NavLink to="/contact"  className={({isActive}) => isActive ? 'text-white' : 'text-stone-400' } >Contact</NavLink> */}
                     <Link to="/" className="text-white">Home</Link>
                     <Link to="/my_list"  className="text-white" >My List</Link>
-                    <Link to="/favorites"  className="text-white">Favorites</Link>
+                    <Link 
+                        onClick={() => {
+                            navigate("/favorites")
+                            window.location.reload()
+                        }} 
+                        className="text-white">Favorites</Link>
                     <Link to="/contact"  className="text-white" >Contact</Link>
                 </div>
             </div>
