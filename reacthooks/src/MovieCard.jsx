@@ -56,13 +56,13 @@ function MovieCard(props) {
               addToFavoritesFunction(!favorite)
               e.preventDefault()
           }} 
-          className="group bg-stone-800 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2 cursor-pointer"
+          className="group bg-stone-900 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2 cursor-pointer"
       >
           <Heart
               size={22}
               // className="stroke-gray-800 group-hover:fill-red-500 group-hover:stroke-red-500 transition duration-100"
               className={`stroke-gray-300 transition duration-100 ${
-                favorite ? 'fill-red-500 stroke-red-500' : 'group-hover:fill-red-500 group-hover:stroke-red-500'
+                favorite ? 'fill-red-600 stroke-red-600' : 'group-hover:fill-red-500 group-hover:stroke-red-500'
               }`}
           />
       </div>
