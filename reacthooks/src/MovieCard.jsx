@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Star, Heart} from 'lucide-react'
 import { useContextFunction } from './Context'
+import { Link } from 'react-router-dom'
 
 function MovieCard(props) {
   const [favorite, setFavorite] = useState(false)
@@ -49,7 +50,7 @@ function MovieCard(props) {
     //   <img className=' h-66 w-48 rounded-xl' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
     // </div>
 
-    <div className=' relative rounded-xl overflow-hidden h-64 w-48'>
+    <Link to={`/movie/${props.data.id}`} className=' relative rounded-xl overflow-hidden h-64 w-48'>
       <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
       <div
           onClick={(e) => {
@@ -66,7 +67,7 @@ function MovieCard(props) {
               }`}
           />
       </div>
-    </div>
+    </Link>
   )
 }
 

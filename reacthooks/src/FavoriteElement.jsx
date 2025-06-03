@@ -43,17 +43,6 @@ function FavoriteElement({movie}) {
         setTimeout(() => setShowMessage({showNotification: false, MovieName: ''}), 5000)
     }
         
-    
-    /*
-    const getMovieDetailsById = () => {
-        axios.get(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${api_key}`)
-        .then(response => console.log("movie info : ", response.data))
-        .catch(error => console.log("Error: ", error))
-    }
-    useEffect(() => {
-        getMovieDetailsById()
-    }, [])
-    */
   return (
     <div className='bg-[#1a1a1a] shadow-lg rounded-xl overflow-hidden flex' >
         <div className='w-32 h-52 '>
@@ -92,7 +81,7 @@ function FavoriteElement({movie}) {
                 </div> */}
             </div>
         </div>
-        {showMessage.showNotification && (
+        {/* {showMessage.showNotification && (
             <div className='bg-green-700  p-3 rounded-xl text-white fixed top-6 left-6 z-50'>
                 <h2 className='font-bold flex gap-1.5 items-center'> 
                     <div className=' p-1 bg-white text-green-700 rounded-full flex justify-center items-center'><Check size={13} /> </div>
@@ -100,7 +89,7 @@ function FavoriteElement({movie}) {
                 </h2>
                 <p>{showMessage.MovieName} was removed from favorites</p>
             </div>
-        )}
+        )} */}
     </div>
   )
 }

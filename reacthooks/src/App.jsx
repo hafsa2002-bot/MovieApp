@@ -12,6 +12,7 @@ import Footer from './Footer'
 import MovieDetails from './movies/MovieDetails'
 import MyList from './MyList'
 import Contact from './Contact'
+import ViewMovie from './ViewMovie'
 // import { Contact } from 'lucide-react'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/favorites" element={<Favorites/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/movie/:id' element={<ViewMovie/>} />
 
         <Route path='/movies' element={<YourMovies/>}>
           <Route path='your_list' element={<YourMovieList/>} />
