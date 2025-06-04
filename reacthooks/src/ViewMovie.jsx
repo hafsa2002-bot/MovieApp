@@ -21,13 +21,28 @@ function ViewMovie() {
     }, [])
 
   return (
-    <div>
-        <p className='text-4xl mt-32'>hello {id} </p>
-        <div className='w-32 h-52 '>
-            <img className='w-full h-full' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
-        </div>
-        <div className=' '>
-            <img className='' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
+    <div className='mt-20'>
+        <div className='relative h-[90vh] w-full py-8 px-10 '>
+            <img className='w-full h-[90vh] object-cover absolute inset-0 -z-50' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 -z-40"  />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-black/10 to-transparent -z-40" />
+
+            <div className='absolute  left-14 top-12 z-10 h-10/12 flex border border-white' >
+                <img className=' rounded-lg' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
+                <div className='text-white'>
+                    <div>
+                        <h1> Ballerina (2025) </h1>
+                        <h3> 06/06/2025 (US) <div className='w-1 h-1 bg-white rounded-full p-0.5'></div> Action, Thriller, Crime <div className='w-1 h-1 bg-white rounded-full p-0.5'></div> 2h 5m</h3>
+                    </div>
+                    <div>
+                        <div className='' >70%</div>
+                        <p>user score</p>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   )
