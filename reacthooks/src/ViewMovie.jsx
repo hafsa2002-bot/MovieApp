@@ -142,7 +142,7 @@ function ViewMovie() {
                             </div>
                         </div>
                     </div>
-                    {/* trailer */}
+                    {/* once you click you have to show the trailer */}
                     <div>
                         {trailerUrl && (
                             <iframe
