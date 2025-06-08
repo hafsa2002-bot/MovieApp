@@ -4,13 +4,18 @@ import axios from 'axios'
 import {Heart, Play} from 'lucide-react'
 import SpinnerLoader from './SpinnerLoader'
 import ProgressCircle from './ProgressCircle'
+import { useContextFunction } from './Context'
+import Trailer from './Trailer'
 
 function ViewMovie() {
     const {id} = useParams()
+    const [favorite, setFavorite] = useState(false)
+    const {addToFavoritesMovies, setFavoritesMovies, favoritesMovies} = useContextFunction()
     const [movieDetails, setMovieDetails] = useState()
     const [trailerUrl, setTrailerUrl] = useState()
     const [movieTime, setMovieTime] = useState("")
     const [showFavoriteDetails, setShowFavoriteDetails] = useState(false)
+    const [showTrailer, setShowTrailer] = useState(false)
     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
     const getMovieDetailsById = () => {
@@ -84,6 +89,26 @@ function ViewMovie() {
             getMovieTimeInMinutes(movieDetails.runtime);
         }
     }, [movieDetails?.runtime]);
+
+    const addToFavoritesFunction = (x) => {
+        if(x){
+            // add to favorite
+            setFavorite(true)
+            addToFavoritesMovies(movieDetails)
+        }else{
+          // remove it from favorites
+            setFavorite(false)
+            const updatedList = favoritesMovies.filter((fav) => fav.id !== Number(id))
+            localStorage.setItem('favoritesMovies', JSON.stringify(updatedList))
+            setFavoritesMovies(updatedList)
+            // showDeleteFromFavoritesMessage(movie.title)
+        }
+    }
+
+    useEffect(() => {
+            const isFavorite = Array.isArray(favoritesMovies) && favoritesMovies.some((fav) => fav.id === Number(id))
+            setFavorite(isFavorite)
+        }, [favoritesMovies, id])
   return (
 
     <div className='mt-20'>
@@ -119,19 +144,24 @@ function ViewMovie() {
                                     <div
                                         onMouseEnter={() => setShowFavoriteDetails(true)} 
                                         onMouseLeave={() => setShowFavoriteDetails(false)}
-                                        className='bg-gray-900 relative flex justify-center items-center w-10 h-10 rounded-full cursor-pointer'
+                                        onClick={() => addToFavoritesFunction(!favorite)}
+                                        className={`bg-gray-900 relative flex justify-center items-center w-10 h-10 rounded-full cursor-pointer`}
                                     >
-                                        <Heart fill='white' size="15"/>
+                                        <Heart size="15" className={`${favorite ? 'fill-red-600 stroke-red-600' : 'fill-white'}`}/>
                                         {
                                             showFavoriteDetails && (
-                                                <div className='absolute top-11 bg-red-300 text-black '>hello</div>
+                                                <div className='absolute top-12 bg-gray-900 text-white w-32 rounded-md px-1 py-1 text-center '>Mark as favorite</div>
                                             )
                                         }
                                     </div>
-                                    <div className='group flex justify-center items-center gap-2 text-white hover:text-stone-400 cursor-pointer'>
+                                    <div 
+                                        onClick={() => setShowTrailer(true)}
+                                        className='group flex justify-center items-center gap-2 text-white hover:text-stone-400 cursor-pointer'
+                                    >
                                         {/* <Play className='fill-white group-hover:fill-gray-400' size="18" /> */}
                                         <Play className="fill-white group-hover:fill-stone-400" size="18" />
                                         <p className='font-semibold'>Play Trailer</p>
+                                        {showTrailer && <Trailer/> }
                                     </div>
                                 </div>
                                 <div className='mt-4'>

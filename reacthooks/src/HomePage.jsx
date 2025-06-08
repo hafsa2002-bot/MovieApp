@@ -60,9 +60,11 @@ function HomePage() {
             >
               Watch Now <Play size={19} fill="black" />
             </Link>
-            <div className="bg-stone-400 text-white flex items-center gap-2 rounded-full py-2 px-3 font-semibold cursor-pointer">
+            <Link
+              to={`/movie/431580`}
+              className="bg-stone-400 text-white flex items-center gap-2 rounded-full py-2 px-3 font-semibold cursor-pointer">
               Details <ChevronRight size={21} />
-            </div>
+            </Link>
           </div>
         </div>
 
