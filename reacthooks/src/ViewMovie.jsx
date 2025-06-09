@@ -12,7 +12,6 @@ function ViewMovie() {
     const [favorite, setFavorite] = useState(false)
     const {addToFavoritesMovies, setFavoritesMovies, favoritesMovies} = useContextFunction()
     const [movieDetails, setMovieDetails] = useState()
-    const [trailerUrl, setTrailerUrl] = useState()
     const [movieTime, setMovieTime] = useState("")
     const [showFavoriteDetails, setShowFavoriteDetails] = useState(false)
     const [showTrailer, setShowTrailer] = useState(false)
@@ -27,48 +26,6 @@ function ViewMovie() {
         .catch(error => console.log("Error: ", error))
     }
 
-    /*
-    const getMovieTrailer = () => {
-        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api_key}`)
-            .then(response => console.log("trailer: ", response))
-            .catch(error => console.log("Error: ", error))
-    }
-    */
-    const getMovieTrailer = () => {
-        axios
-            .get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api_key}`)
-            .then(response => {
-                const videos = response.data.results;
-
-                // Try to find the "Official Trailer" on YouTube
-                const trailer = videos.find(
-                    (video) =>
-                        video.type === "Trailer" &&
-                        video.site === "YouTube" &&
-                        video.official
-                );
-
-                // Fallback: get any YouTube trailer if official not found
-                const fallbackTrailer = videos.find(
-                    (video) => video.type === "Trailer" && video.site === "YouTube"
-                );
-
-                const selectedTrailer = trailer || fallbackTrailer;
-
-                if (selectedTrailer) {
-                    const trailerUrl = `https://www.youtube.com/watch?v=${selectedTrailer.key}`;
-                    console.log("Trailer URL: ", trailerUrl);
-                    // Optionally store it in state
-                    setTrailerUrl(trailerUrl);
-                } else {
-                    console.log("No trailer found.");
-                }
-            })
-            .catch(error => {
-                console.log("Error fetching trailer: ", error);
-            });
-    };
-
     const getMovieTimeInMinutes = (min) => {
         const h = parseInt(min / 60)
         // console.log("hours: ", h)
@@ -77,11 +34,8 @@ function ViewMovie() {
         setMovieTime(`${h}h ${m}m`)
     }
 
-
     useEffect(() => {
-        getMovieDetailsById()
-        getMovieTrailer()
-        
+        getMovieDetailsById() 
     }, [])
 
     useEffect(() => {
@@ -161,7 +115,7 @@ function ViewMovie() {
                                         {/* <Play className='fill-white group-hover:fill-gray-400' size="18" /> */}
                                         <Play className="fill-white group-hover:fill-stone-400" size="18" />
                                         <p className='font-semibold'>Play Trailer</p>
-                                        {showTrailer && <Trailer/> }
+                                        {showTrailer && <Trailer id={id} /> }
                                     </div>
                                 </div>
                                 <div className='mt-4'>
@@ -171,20 +125,6 @@ function ViewMovie() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* once you click you have to show the trailer */}
-                    <div>
-                        {trailerUrl && (
-                            <iframe
-                                width="560"
-                                height="315"
-                                src={trailerUrl.replace("watch?v=", "embed/")}
-                                title="YouTube trailer"
-                                frameBorder="0"
-                                allow="autoplay; encrypted-media"
-                                allowFullScreen
-                            ></iframe>
-                        )}
                     </div>
                 </>
             )
