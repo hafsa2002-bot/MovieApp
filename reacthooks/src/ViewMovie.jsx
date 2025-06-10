@@ -115,7 +115,6 @@ function ViewMovie() {
                                         {/* <Play className='fill-white group-hover:fill-gray-400' size="18" /> */}
                                         <Play className="fill-white group-hover:fill-stone-400" size="18" />
                                         <p className='font-semibold'>Play Trailer</p>
-                                        {showTrailer && <Trailer id={id} /> }
                                     </div>
                                 </div>
                                 <div className='mt-4'>
@@ -126,6 +125,7 @@ function ViewMovie() {
                             </div>
                         </div>
                     </div>
+                    {showTrailer && <Trailer id={id} setShowTrailer={setShowTrailer} /> }
                 </>
             )
         }

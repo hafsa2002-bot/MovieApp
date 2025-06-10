@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { X } from 'lucide-react';
 
-function Trailer({id}) {
+function Trailer({id, setShowTrailer}) {
     const [trailerUrl, setTrailerUrl] = useState()
     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
@@ -44,13 +45,23 @@ function Trailer({id}) {
         getMovieTrailer()
     }, [])
   return (
-    <div className='w-screen h-screen  top-0 right-0 fixed flex justify-center items-center z-50 ' style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
+    <div className='w-screen h-screen top-4  right-0 fixed z-50 flex justify-center items-center ' style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
         {/* once you click you have to show the trailer */}
-        <div className=' bg-black/90 border border-white w-9/12  px-16 py-6 rounded-md shadow-md flex flex-col items-center gap-5'>
+        <div className=' bg-black/90 border border-stone-800  w-[960px]  rounded-md  flex flex-col justify-center gap-4 overflow-hidden'>
+            <div className='text-white px-7 pb-2 pt-4 flex justify-between w-full '>
+                <h1 className='text-xl font-semibold'>Play Trailer</h1>
+                <div
+                    onClick={() => setShowTrailer(false)}
+                    className='text-stone-400 hover:text-white cursor-pointer hover:bg-stone-900 w-8 flex justify-center items-center rounded-full h-8 '
+                >
+                    <X/>
+                </div>
+            </div>
+
             {trailerUrl && (
                 <iframe
-                    width="560"
-                    height="315"
+                    width="960"
+                    height="415"
                     src={trailerUrl.replace("watch?v=", "embed/")}
                     title="YouTube trailer"
                     frameBorder="0"

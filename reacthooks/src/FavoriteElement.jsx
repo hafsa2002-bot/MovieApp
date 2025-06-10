@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Check, Heart, X } from 'lucide-react';
 import { useContextFunction } from './Context'
+import { Link } from 'react-router-dom';
 
 function FavoriteElement({movie}) {
     // const [movieInfo, setMovieInfo] = useState([]) 
@@ -45,11 +46,11 @@ function FavoriteElement({movie}) {
         
   return (
     <div className='bg-[#1a1a1a] shadow-lg rounded-xl overflow-hidden flex' >
-        <div className='w-32 h-52 '>
+        <Link to={`/movie/${movie.id}`} className='w-32 h-52  '>
             <img className='w-full h-full' src ={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}  />
-        </div>
+        </Link>
         <div className='p-4 w-10/12 '>
-            <h2 className='text-xl font-semibold'>{movie.title} <span className='text-base text-gray-400 font-normal'> ( {movie.original_title} ) </span></h2>
+            <Link to={`/movie/${movie.id}`} className='text-xl font-semibold'>{movie.title} <span className='text-base text-gray-400 font-normal'> ( {movie.original_title} ) </span></Link>
             <p className='text-sm text-gray-400'> {formatDate(movie.release_date)} </p>
             <p className='mt-2 text-base text-gray-300'>{movie.overview}</p>
             <div className='flex items-center gap-3 mt-4 text-gray-400'>
