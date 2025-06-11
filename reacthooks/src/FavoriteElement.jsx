@@ -70,6 +70,22 @@ function FavoriteElement({movie}) {
                     />
                     Favorite
                 </div>
+                <div
+                    onClick={(e) => {
+                        addToFavoritesFunction(!favorite)
+                        e.preventDefault()
+                    }}  
+                    className='flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
+                >
+                    <Heart 
+                        className={`
+                            w-5 h-5
+                            ${favorite && 'fill-red-600 stroke-red-600'}
+                        `}
+
+                    />
+                    Favorite
+                </div>
                 {/* <div
                     onClick={(e) => {
                         // showDeleteFromFavoritesMessage(movie.title)

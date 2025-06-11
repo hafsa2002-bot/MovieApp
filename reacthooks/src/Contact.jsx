@@ -33,27 +33,28 @@ function Contact() {
                 <button className="w-10/12 bg-amber-400 text-black py-2 rounded hover:bg-amber-500">Submit</button>
           </form>
         </div> */}
-        <div className=" bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-orange-400 p-[4px] rounded-lg w-1/2 h-[75vh] ">
+        <div className=" bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-orange-400 p-[4px] rounded-lg w-1/2 h-[78vh] ">
           <div className="bg-[#1a1a1a] h-full w-full rounded-lg p-8">
-            <h2 className="text-white font-bold text-4xl text-center mb-10">Contact Form</h2>
+            <h2 className="text-white font-bold text-4xl text-center ">Contact Form</h2>
+            <p className='text-stone-400 mt-1 font-semibold text-center mb-10'>Write us a message</p>
             <form>
               {/* <input className="w-full bg-black text-white p-2 rounded mb-3" placeholder="Name" />
               <input className="w-full bg-black text-white p-2 rounded mb-3" placeholder="Email" />
               <textarea className="w-full bg-black text-white p-2 rounded mb-3" placeholder="Message" />
               <button className="w-full bg-amber-400 text-black py-2 rounded hover:bg-amber-500">Submit</button> */}
               <div className='flex flex-col gap-2'>
-                <label className='text-white font-semibold text-sm '>Name</label>
-                <input className="w-full  text-white py-2  mb-3 border-b" placeholder="Name" />
+                <label className='text-white font-semibold text-sm '>Full name <span className=' text-red-400'>*</span></label>
+                <input className="w-full  text-white py-2  mb-3 border-b outline-none" placeholder="John Doe" />
               </div>
               <div className='flex flex-col gap-2'>
-                <label className='text-white font-semibold text-sm '>Email</label>
-                <input className="w-full  text-white py-2 rounded mb-3" placeholder="Email" />
+                <label className='text-white font-semibold text-sm '>Email <span className=' text-red-400'>*</span></label>
+                <input className="w-full  text-white py-2 mb-3 border-b outline-none" placeholder="johnDoe@mail.com" />
               </div>
               <div className='flex flex-col gap-2'>
-                <label className='text-white font-semibold text-sm '>Message</label>
-                <textarea className="w-full  text-white py-2 rounded mb-3" placeholder="Message" />
+                <label className='text-white font-semibold text-sm '>Message <span className=' text-red-400'>*</span></label>
+                <textarea className="w-full  text-white py-2 mb-3 border-b outline-none" placeholder="Type your message" />
               </div>
-              <button className="w-full bg-amber-400 text-black py-2 rounded hover:bg-amber-500">Submit</button>
+              <button className="w-full bg-amber-400 text-black py-3 mt-4 rounded hover:bg-amber-500">Submit</button>
             </form>
           </div>
         </div>

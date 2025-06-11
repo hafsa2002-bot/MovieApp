@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import {Heart, Play} from 'lucide-react'
+import {Heart, List, Play} from 'lucide-react'
 import SpinnerLoader from './SpinnerLoader'
 import ProgressCircle from './ProgressCircle'
 import { useContextFunction } from './Context'
 import Trailer from './Trailer'
+import { format } from 'date-fns'
 
 function ViewMovie() {
     const {id} = useParams()
@@ -15,6 +16,7 @@ function ViewMovie() {
     const [movieTime, setMovieTime] = useState("")
     const [showFavoriteDetails, setShowFavoriteDetails] = useState(false)
     const [showTrailer, setShowTrailer] = useState(false)
+    const [showAddToListDetails, setShowAddToListDetails] = useState(false)
     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
     const getMovieDetailsById = () => {
@@ -36,7 +38,7 @@ function ViewMovie() {
 
     useEffect(() => {
         getMovieDetailsById() 
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (movieDetails?.runtime) {
@@ -81,9 +83,9 @@ function ViewMovie() {
                             <img className='h-full rounded-lg' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
                             <div className='text-white w-8/12 flex flex-col gap-3 '>
                                 <div>
-                                    <h1 className='text-4xl text-gray-300 font-thin'> <span className=' font-bold text-white'>{movieDetails?.original_title}</span> (2025) </h1>
+                                    <h1 className='text-4xl text-gray-300 font-thin'> <span className=' font-bold text-white'>{movieDetails?.original_title}</span> ({movieDetails?.release_date && format(new Date(movieDetails.release_date), "yyyy")})</h1>
                                     <h3 className='text-sm md:text-base text-gray-300 flex items-center gap-1.5 mt-1.5'> 
-                                        06/06/2025 ({movieDetails?.origin_country}) 
+                                        <span> {movieDetails?.release_date && format(new Date(movieDetails.release_date), "dd/MM/yyyy")} </span> ({movieDetails?.origin_country[0]}) 
                                         <div className='w-1 h-1 bg-white rounded-full p-0.5'></div> 
                                         <p>{movieDetails?.genres.map(genre => genre.name).join(', ')}</p>
                                         <div className='w-1 h-1 bg-white rounded-full p-0.5'></div>                                         {/* {getMovieTimeInMinutes(movieDetails?.runtime)} */}
@@ -104,7 +106,20 @@ function ViewMovie() {
                                         <Heart size="15" className={`${favorite ? 'fill-red-600 stroke-red-600' : 'fill-white'}`}/>
                                         {
                                             showFavoriteDetails && (
-                                                <div className='absolute top-12 bg-gray-900 text-white w-32 rounded-md px-1 py-1 text-center '>Mark as favorite</div>
+                                                <div className='absolute top-12 bg-gray-900 text-sm text-white w-32 rounded-md px-1 py-1 text-center '>Mark as favorite</div>
+                                            )
+                                        }
+                                    </div>
+                                    <div
+                                        onMouseEnter={() => setShowAddToListDetails(true)} 
+                                        onMouseLeave={() => setShowAddToListDetails(false)}
+                                        // onClick={() => addToFavoritesFunction(!favorite)}
+                                        className={`bg-gray-900 relative flex justify-center items-center w-10 h-10 rounded-full cursor-pointer`}
+                                    >
+                                        <List size="15" />
+                                        {
+                                            showAddToListDetails && (
+                                                <div className='absolute top-12 bg-gray-900 text-white w-24 rounded-md px-1 py-1 text-center text-sm '>Add to list</div>
                                             )
                                         }
                                     </div>

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {Heart, CirclePlus, List, Search} from 'lucide-react'
+import SearchMovieInput from './SearchMovieInput'
 
 function Nav() {
-    const [query, setQuery] = useState("")
     const [scrolled, setScrolled] = useState(false)
     const navigate = useNavigate()
     
@@ -37,7 +37,6 @@ function Nav() {
         </nav> */}
         {/* bg-[#0F0F0F] */}
         <nav 
-            
             // className={`px-5 pt-3 pb-2 font-semibold flex justify-between items-center fixed top-0 w-full z-50 transition-all duration-300 ${
             //     scrolled  ? 'bg-[#0F0F0F] shadow-md' : 'bg-transparent'
             // }`}
@@ -49,52 +48,53 @@ function Nav() {
         >
             <div className='flex justify-center items-center gap-12'>
                 {/* logo */}
-                <div className='w-36 '>
+                <div
+                    onClick={() => {
+                        navigate("/")
+                        window.scrollTo(0, 0)
+                    }}
+                    className='w-36 cursor-pointer'
+                >
                     <img src='/images/logo2.png' />
                 </div>
 
                 {/* pages */}
                 <div className='uppercase flex gap-7'>
-                    <Link to="/" className="text-white">Home</Link>
-                    <Link to="/my_list"  className="text-white" >My List</Link>
-                    <Link 
+                    <Link to="/" className="text-white outline-none hover:border-white hover:border-b-2 hover:pb-1">
+                        Home
+                    </Link>
+                    <NavLink 
+                        to="/my_list"  
+                        className={({isActive}) => isActive ? "text-white  border-b-2 pb-1 border-white" : "text-white hover:border-white hover:border-b-2 hover:pb-1"} 
+                    >
+                        My List
+                    </NavLink>
+                    {/* favorites */}
+                    <NavLink 
+                        to="/favorites"
                         onClick={() => {
-                            navigate("/favorites")
-                            window.location.reload()
+                            // navigate("/favorites")
+                            // window.location.reload()
+                            window.scrollTo(0, 0)
                         }} 
-                        className="text-white">Favorites</Link>
-                    <Link to="/contact"  className="text-white" >Contact</Link>
+                        className={({isActive}) => isActive ? "text-white   border-b-2 pb-1 border-white" : "text-white hover:border-white hover:border-b-2 hover:pb-1"}
+                    >
+                        Favorites
+                    </NavLink>
+                    {/* contact us */}
+                    <NavLink 
+                        to="/contact"
+                        onClick={() => {
+                            window.scrollTo(0, 0)
+                        }}   
+                        className={({isActive}) => `text-white pb-1  ${isActive ? 'border-b-2 border-white' : ' hover:border-b-2 hover::border-white'}`}
+                    >
+                        Contact
+                    </NavLink>
                 </div>
             </div>
             <div>
-                <form action="/filter"  className=' h-10  flex justify-between overflow-hidden gap-2 '>
-                    {/* <button className='h-full text-stone-200 font-semibold '>
-                        <Search size={20}/>
-                    </button>
-                    <input
-                        type='search' 
-                        name="query"
-                        value = {query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        id="search" 
-                        placeholder="Search For Movies..."  
-                        autoComplete='off'
-                        className='  outline-none text-gray-200 placeholder-stone-400 placeholder:text-base w-40 '
-                    /> */}
-                    <button className='h-full text-white font-semibold '>
-                        <Search size={20}/>
-                    </button>
-                    <input
-                        type='search' 
-                        name="query"
-                        value = {query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        id="search" 
-                        placeholder="Search For Movies..."  
-                        autoComplete='off'
-                        className='  outline-none text-white placeholder-white placeholder:text-base w-40 '
-                    />
-                </form>
+                <SearchMovieInput scrolled={scrolled}/>
             </div>
         </nav>
     </div>

@@ -50,7 +50,11 @@ function MovieCard(props) {
     //   <img className=' h-66 w-48 rounded-xl' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
     // </div>
 
-    <Link to={`/movie/${props.data.id}`} className=' relative rounded-xl overflow-hidden h-64 w-48'>
+    <Link 
+      to={`/movie/${props.data.id}`} 
+      onClick={() => window.scrollTo(0, 0)}
+      className=' relative rounded-xl overflow-hidden h-64 w-48'
+    >
       <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
       <div
           onClick={(e) => {
