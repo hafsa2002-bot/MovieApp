@@ -2,11 +2,30 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import SpinnerLoader from './SpinnerLoader'
 import MovieCard from './MovieCard'
+import PopularMovies from './genres/PopularMovies'
+import ActionMovies from './genres/ActionMovies'
+import AnimationMovies from './genres/AnimationMovies'
+import AdventureMovies from './genres/AdventureMovies'
+import HorrorMovies from './genres/HorrorMovies'
+import DocumentaryMovies from './genres/DocumentaryMovies'
+import ComedyMovies from './genres/ComedyMovies'
+import CrimeMovies from './genres/CrimeMovies'
+import FamilyMovies from './genres/FamilyMovies'
+import FantasyMovies from './genres/FantasyMovies'
+import HistoryMovies from './genres/HistoryMovies'
+import MysteryMovies from './genres/MysteryMovies'
+import ScienceFictionMovies from './genres/ScienceFictionMovies'
+import TVMovies from './genres/TVMovies'
+import ThrillerMovies from './genres/ThrillerMovies'
+import WarMovies from './genres/WarMovies'
+import WesternMovies from './genres/WesternMovies'
 
 
 function MoviesWithFilter() {
     const [backendData, setBackendData] = useState([])
-     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
+    const [filterOption, setFilterOption] = useState("popular")
+    const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
+
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
         .then(response => {
@@ -15,6 +34,28 @@ function MoviesWithFilter() {
         })
         .catch(err => setError(err.message))
     }, [])
+
+    /*
+        {id: 28, name: 'Action'}
+        {id: 12, name: 'Adventure'}
+        {id: 16, name: 'Animation'}
+        {id: 35, name: 'Comedy'}
+        {id: 80, name: 'Crime'}
+        {id: 99, name: 'Documentary'}
+        {id: 18, name: 'Drama'}
+        {id: 10751, name: 'Family'}
+        {id: 14, name: 'Fantasy'}
+        {id: 36, name: 'History'}
+        {id: 27, name: 'Horror'}
+        {id: 10402, name: 'Music'}
+        {id: 9648, name: 'Mystery'}
+        {id: 10749, name: 'Romance'}
+        {id: 878, name: 'Science Fiction'}
+        {id: 10770, name: 'TV Movie'}
+        {id: 53, name: 'Thriller'}
+        {id: 10752, name: 'War'}
+        {id: 37, name: 'Western'}
+     */
   return (
     <div>
         {/* <div className=' flex flex-wrap gap-10 justify-between    '>
@@ -25,22 +66,151 @@ function MoviesWithFilter() {
             
         </div> */}
         <section className=''>
-            <div className='flex gap-3' >
-                <div className='rounded-full bg-white px-3 py-1 font-semibold'>All Popular</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold' >Action</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Animation</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Adventure</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Horror</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Documentary</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Romance</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Kids</div>
-                <div className='rounded-full bg-stone-700 text-white px-3 py-1 font-semibold'>Comedy</div>
+            <div className='flex gap-3 w-full overflow-x-scroll' >
+                <div
+                    onClick={() => setFilterOption("popular")} 
+                    className={`cursor-pointer rounded-full min-w-32 max-w-82 px-3 py-1 font-semibold 
+                        ${(filterOption === "popular") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    All Popular
+                </div>
+                <div
+                    onClick={() => setFilterOption("action")}  
+                    className={`cursor-pointer rounded-full    min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "action") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Action
+                </div>
+                <div 
+                    onClick={() => setFilterOption("adventure")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "adventure") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    Adventure
+                </div>
+                <div 
+                    onClick={() => setFilterOption("animation")} 
+                    className={`cursor-pointer rounded-full   min-w-10  max-w-96 px-3 py-1 font-semibold 
+                        ${(filterOption === "animation") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    Animation
+                </div>
+                <div 
+                    onClick={() => setFilterOption("comedy")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "comedy") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Comedy
+                </div>
+                <div 
+                    onClick={() => setFilterOption("crime")} 
+                    className={`cursor-pointer rounded-full   min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "crime") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    Crime
+                </div>
+                <div 
+                    onClick={() => setFilterOption("documentary")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "documentary") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Documentary
+                </div>
+                <div 
+                    onClick={() => setFilterOption("family")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96 px-3 py-1 font-semibold 
+                        ${(filterOption === "family") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    Family
+                </div>
+                <div 
+                    onClick={() => setFilterOption("fantasy")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "fantasy") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    Fantasy
+                </div>
+                <div 
+                    onClick={() => setFilterOption("history")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96 px-3 py-1 font-semibold 
+                        ${(filterOption === "history") ? "bg-white" : "bg-stone-700 text-white"}`}                
+                >
+                    History
+                </div>
+                <div
+                    onClick={() => setFilterOption("horror")}  
+                    className={`cursor-pointer rounded-full   min-w-10  max-w-96 px-3 py-1 font-semibold 
+                        ${(filterOption === "horror") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Horror
+                </div>
+                <div 
+                    onClick={() => setFilterOption("mystery")} 
+                    className={`cursor-pointer rounded-full  min-w-10  max-w-96  px-3 py-1 font-semibold 
+                        ${(filterOption === "mystery") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Mystery
+                </div>
+                <div 
+                    onClick={() => setFilterOption("scienceFiction")} 
+                    className={`cursor-pointer rounded-full  min-w-32  max-w-96 px-3 py-1 font-semibold 
+                        ${(filterOption === "scienceFiction") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Science Fiction
+                </div>
+                <div 
+                    onClick={() => setFilterOption("tvMovie")} 
+                    className={`cursor-pointer rounded-full min-w-32  max-w-82  px-3 py-1 font-semibold 
+                        ${(filterOption === "tvMovie") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    TV Movie
+                </div>
+                <div 
+                    onClick={() => setFilterOption("thriller")} 
+                    className={`cursor-pointer rounded-full min-w-32  max-w-82  px-3 py-1 font-semibold 
+                        ${(filterOption === "thriller") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Thriller
+                </div>
+                <div 
+                    onClick={() => setFilterOption("war")} 
+                    className={`cursor-pointer rounded-full min-w-32  max-w-82  px-3 py-1 font-semibold 
+                        ${(filterOption === "war") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    War
+                </div>
+                <div 
+                    onClick={() => setFilterOption("western")} 
+                    className={`cursor-pointer rounded-full min-w-32  max-w-82  px-3 py-1 font-semibold 
+                        ${(filterOption === "western") ? "bg-white" : "bg-stone-700 text-white"}`}
+                >
+                    Western
+                </div>
             </div>
-            <div className=' grid grid-cols-6 gap-10 justify-between   mt-9 '>
-                {backendData.results 
-                    ? backendData.results.map((v, index) => <MovieCard data = {v} key={index} />)
-                    : <SpinnerLoader/>
-                }
+            <div>
+                
+                    {
+                        (filterOption === "popular") ? <PopularMovies /> : 
+                        (filterOption === "action") ? <ActionMovies genreID={28} /> :
+                        (filterOption === "adventure") ? <AdventureMovies genreID={12} /> : 
+                        (filterOption === "animation") ? <AnimationMovies genreID={16} /> :
+                        (filterOption === "comedy") ? <ComedyMovies genreID={35} /> :
+                        (filterOption === "crime") ? <CrimeMovies genreID={80} /> :
+                        (filterOption === "documentary") ? <DocumentaryMovies genreID={99} /> : 
+                        (filterOption === "family") ? <FamilyMovies genreID={10751} /> :
+                        (filterOption === "fantasy") ? <FantasyMovies genreID={14} /> :
+                        (filterOption === "history") ? <HistoryMovies genreID={36} /> :
+                        (filterOption === "horror") ? <HorrorMovies genreID={27} /> : 
+                        (filterOption === "mystery") ? <MysteryMovies genreID={9648} /> :
+                        (filterOption === "scienceFiction") ? <ScienceFictionMovies genreID={878} /> :
+                        (filterOption === "tvMovie") ? <TVMovies genreID={10770} /> :
+                        (filterOption === "thriller") ? <ThrillerMovies genreID={53} /> :
+                        (filterOption === "war") ? <WarMovies genreID={10752} /> :
+                        (filterOption === "western") ? <WesternMovies genreID={37} /> : null
+                    }
+                    
+                    {/* : <SpinnerLoader/> */}
+                
                 
             </div>
         </section>

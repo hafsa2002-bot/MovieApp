@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react'
+import { ArrowRight, ImageOff, Search } from 'lucide-react'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {format} from 'date-fns'
@@ -76,29 +76,37 @@ function SearchMovieInput({scrolled}) {
         </form>
         {
             (searchedMovies.length > 0 && query) && (
-                <div className='bg-[#1a1a1a] w-full h-[80vh] overflow-y-scroll custom-scrollbar p-3 rounded-b-lg text-white absolute'>
-                    <h1 className='text-xl text-stone-400 mx-2 pb-1.5 border-b mb-4'>Movies & TV Shows</h1>
-                    {searchedMovies?.map((movie, index) => (
-                        <div  className='flex gap-3 p-2 '>
-                            <Link 
-                                to={`/movie/${movie.id}`} 
-                                onClick={() => setQuery("")}
-                                className='w-13 rounded-md overflow-hidden'>
-                                <img className='w-full' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-                            </Link>
-                            <div className='w-9/12 text-stone-200 pt-1'>
+                <div className='bg-[#1a1a1a] w-full h-[80vh] overflow-y-scroll custom-scrollbar rounded-b-lg text-white absolute'>
+                    <div className='p-3  '>
+                        <h1 className='text-xl text-stone-400 mx-2 pb-1.5 border-b mb-4'>Movies & TV Shows</h1>
+                        {searchedMovies?.map((movie, index) => (
+                            <div  className='flex gap-3 p-2 '>
                                 <Link 
                                     to={`/movie/${movie.id}`} 
-                                    className='text-lg'
                                     onClick={() => setQuery("")}
+                                    className='w-13 h-18 rounded-md overflow-hidden'
                                 >
-                                    {movie.original_title}
+                                    {
+                                        movie.poster_path 
+                                        ? <img className='w-full' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                                        : <div className='bg-stone-400 w-full h-full text-stone-600 flex justify-center items-center'> <ImageOff size={26} /> </div>
+                                    }
                                 </Link>
-                                <div className='text-sm text-stone-500'>{movie?.release_date && format(new Date(movie.release_date), "d MMM yyyy")}</div>
+                                <div className='w-9/12 text-stone-200 pt-1'>
+                                    <Link 
+                                        to={`/movie/${movie.id}`} 
+                                        className='text-lg'
+                                        onClick={() => setQuery("")}
+                                    >
+                                        {movie.original_title}
+                                    </Link>
+                                    <div className='text-sm text-stone-500'>{movie?.release_date && format(new Date(movie.release_date), "d MMM yyyy")}</div>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                    <div className='text-red-600'>show all</div>
+                        ))}
+                        
+                    </div>
+                    <div className='text-stone-500 hover:text-stone-300 cursor-pointer flex justify-center items-center gap-1 text-sm border-t-[0.4px] border-stone-500 py-2'>View all results for {query} <ArrowRight size={17} /> </div>
                 </div>
             )
         }
