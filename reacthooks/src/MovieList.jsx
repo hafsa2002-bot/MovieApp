@@ -40,18 +40,18 @@ function MovieList() {
     if(error) 
         return <h2 className='text-3xl font-semibold mt-70 bg-white text-center py-30'>Error:{error}</h2>
     return (
-        <div className=' relative bottom-44 pt-4  bg-blend-multiply   pb-40  px-10'>
+        <div className=' relative bottom-44 pt-4  bg-blend-multiply -mb-10 px-10'>
             {/* trending movies */}
             <section className='mb-12'>
                 <div className='flex items-center mb-5 justify-between'>
                     <h1 className='text-white text-2xl font-semibold '>Trending Movies</h1>
-                    <div className='flex items-center gap-1.5 text-stone-300 pr-2 cursor-pointer font-semibold'> See more <ArrowRight size={21} /></div>
+                    {/* <div className='flex items-center gap-1.5 text-stone-300 pr-2 cursor-pointer font-semibold'> See more <ArrowRight size={21} /></div> */}
                 </div>
-                <div  className='grid grid-cols-6'>
+                <div  className='flex  w-full overflow-x-scroll gap-3 hide-scrollbar'>
                     {
-                        trendingMovies?.slice(0, 6).map((movie, index) => (
+                        trendingMovies?.map((movie, index) => (
                             // <div>{movie}</div>
-                            <MovieCard data = {movie} key={index} />
+                            <MovieCard data = {movie} key={index}  />
                             
                         ))
                     }

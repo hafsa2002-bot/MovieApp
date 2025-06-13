@@ -8,6 +8,8 @@
   scrollbar-width: none;     /* Firefox */
 }
 
+
+/*for search live scroll bar-y */
 .custom-scrollbar {
   scrollbar-width: thin;              /* Firefox */
   scrollbar-color: #8b8683 #1f2937;   /* thumb color | track color */
@@ -26,6 +28,27 @@
   background-color: #8b8683; /* thumb color */
   border-radius: 4px;
   border: 2px solid #1f2937; /* optional: padding effect */
+}
+
+/* for filters scrollbar-x */
+.customScrollBar {
+  scrollbar-width: thin;              /* Firefox */
+  scrollbar-color: #535150 #11151a;   /* thumb color | track color */
+}
+
+/* Chrome, Edge, Safari */
+.customScrollBar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.customScrollBar::-webkit-scrollbar-track {
+  background: #0a0c0f; /* track color */
+}
+
+.customScrollBar::-webkit-scrollbar-thumb {
+  background-color: #504e4e; /* thumb color */
+  border-radius: 4px;
+  border: 2px solid #121416; /* optional: padding effect */
 }
 
 /* :root {

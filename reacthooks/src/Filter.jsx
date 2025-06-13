@@ -57,10 +57,10 @@ function Filter() {
     })
     */
   return (
-    <>
+    <div className='mt-10'>
         {/* <Nav/> */}
-        <h2 className='mt-20 text-xl ml-4'>Results for: {query}</h2>
-        <div className='mt-4 flex flex-wrap gap-10 px-4 justify-between'>
+        <h2 className=' text-xl'>Results for: {query}</h2>
+        <div className='mt-4 flex flex-wrap gap-10 justify-between'>
         
             {movies.length > 0 ? (
                 movies.map((movie) => <MovieCard data = {movie} />)
@@ -69,7 +69,7 @@ function Filter() {
                 <PageNotFound/>
             )}
         </div>
-    </>
+    </div>
   )
 }
 

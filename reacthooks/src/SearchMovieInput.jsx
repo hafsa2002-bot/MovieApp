@@ -80,7 +80,7 @@ function SearchMovieInput({scrolled}) {
                     <div className='p-3  '>
                         <h1 className='text-xl text-stone-400 mx-2 pb-1.5 border-b mb-4'>Movies & TV Shows</h1>
                         {searchedMovies?.map((movie, index) => (
-                            <div  className='flex gap-3 p-2 '>
+                            <div  className='flex gap-3 p-2 ' key={index}>
                                 <Link 
                                     to={`/movie/${movie.id}`} 
                                     onClick={() => setQuery("")}

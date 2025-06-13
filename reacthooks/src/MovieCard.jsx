@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Star, Heart} from 'lucide-react'
+import {Star, Heart, ImageOff} from 'lucide-react'
 import { useContextFunction } from './Context'
 import { Link } from 'react-router-dom'
 
@@ -53,9 +53,15 @@ function MovieCard(props) {
     <Link 
       to={`/movie/${props.data.id}`} 
       onClick={() => window.scrollTo(0, 0)}
-      className=' relative rounded-xl overflow-hidden h-64 w-48'
+      className=' relative rounded-xl overflow-hidden shrink-0 h-64 w-48'
     >
-      <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`}   />
+      {props.data.poster_path
+        ? <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`} alt={`${props.data?.original_title}`}  />
+        : <div className='bg-stone-900 w-full h-full flex flex-col justify-center items-center text-stone-600'> 
+            <ImageOff size={60}/> 
+            <p className='text-stone-500 text-lg pt-2 font-semibold'>{props.data?.original_title}</p>
+          </div>
+      }
       <div
           onClick={(e) => {
               addToFavoritesFunction(!favorite)
