@@ -11,8 +11,8 @@ function SpinnerLoader() {
     // }, [])
   return (
     <>
-        <div className='flex justify-center items-center h-screen w-full' >
-            <img src="/images/Rolling.gif" />
+        <div className='flex justify-center items-center h-[85vh] w-full bg-[#0f0f0f]' >
+            <img src="/images/Rolling2.gif" />
         </div>
     </>
   )

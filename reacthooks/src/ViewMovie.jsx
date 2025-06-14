@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import {Heart, List, Play} from 'lucide-react'
+import {Heart, Image, List, Play} from 'lucide-react'
 import SpinnerLoader from './SpinnerLoader'
 import ProgressCircle from './ProgressCircle'
 import { useContextFunction } from './Context'
@@ -75,12 +75,20 @@ function ViewMovie() {
             ): (
                 <>
                     <div className='relative h-[87vh] w-full   overflow-hidden '>
-                        <img className='w-full h-screen shadow-2xl shadow-black object-cover absolute inset-0 -z-50 left-40' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
+                        {
+                            movieDetails?.backdrop_path
+                            ?   <img className='w-full h-screen shadow-2xl shadow-black object-cover absolute inset-0 -z-50 left-40' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
+                            :   <div className='bg-white'></div>   
+                        }
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/92 to-black/30 -z-40"  />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent -z-40" />
 
                         <div className='absolute left-14 top-12 z-10 h-10/12  flex items-center  gap-12 ' >
-                            <img className='h-full rounded-lg' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
+                        {
+                            movieDetails?.poster_path
+                            ?   <img className='h-full rounded-lg' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
+                            :   <div className='bg-stone-400 text-stone-500 flex justify-center items-center h-full rounded-lg w-96'> <Image size={100} /> </div>
+                        }
                             <div className='text-white w-8/12 flex flex-col gap-3 '>
                                 <div>
                                     <h1 className='text-4xl text-gray-300 font-thin'> <span className=' font-bold text-white'>{movieDetails?.original_title}</span> ({movieDetails?.release_date && format(new Date(movieDetails.release_date), "yyyy")})</h1>
@@ -135,7 +143,17 @@ function ViewMovie() {
                                 <div className='mt-4'>
                                     <i className='text-gray-400 mt-1'>{movieDetails?.tagline}</i>
                                     <h3 className='text-lg font-semibold mt-1'>Overview</h3>
-                                    <p className='text-base text-gray-300 mt-1'>{movieDetails?.overview}</p>
+                                    {
+                                        movieDetails?.overview
+                                        ? <p className='text-base text-gray-300 mt-1'>{movieDetails?.overview}</p>
+                                        : (
+                                            <>
+                                                <p className='mt-1.5'>We don't have an overview translated in English. </p>
+                                                <p className='mt-2'>We don't have any crew added to this movie. </p>
+                                            </>
+                                        )
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

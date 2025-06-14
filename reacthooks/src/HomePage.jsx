@@ -62,7 +62,7 @@ function HomePage() {
             </Link>
             <Link
               to={`/movie/431580`}
-              className="bg-stone-400 text-white flex items-center gap-2 rounded-full py-2 px-3 font-semibold cursor-pointer">
+              className="bg-stone-700 text-white flex justify-center items-center gap-2 rounded-full py-2 px-3 font-semibold cursor-pointer">
               Details <ChevronRight size={21} />
             </Link>
           </div>

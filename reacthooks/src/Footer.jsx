@@ -12,10 +12,10 @@ function Footer() {
             </div>
             <div>
                 <ul className='flex gap-4'>
-                    <Link className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <Instagram color="black"/> </Link>
-                    <Link  className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <Twitter color="black" fill="black" strokeWidth={0}/> </Link>
+                    <Link target="_blank"  to="https://www.instagram.com/hafssa_4748/?hl=fr" className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <Instagram color="black"/> </Link>
+                    <Link className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <Twitter color="black" fill="black" strokeWidth={0}/> </Link>
                     <Link className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <Facebook color="black"  fill="black" strokeWidth={0}/> </Link>
-                    <Link className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <LinkedinIcon color="black" fill="black" strokeWidth={0}/> </Link>
+                    <Link target="_blank" to="https://www.linkedin.com/in/barhoud-hafsa-1a8350328/" className='w-10 h-10 bg-stone-300 flex justify-center items-center rounded-full'> <LinkedinIcon color="black" fill="black" strokeWidth={0}/> </Link>
                 </ul>
             </div>
         </div>
