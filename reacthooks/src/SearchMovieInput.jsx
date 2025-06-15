@@ -40,7 +40,7 @@ function SearchMovieInput({scrolled}) {
             ${(window.location.pathname === "/" && !scrolled)  ? "bg-transparent" : "bg-[#1a1a1a]"}
             ` }
         >
-            <button className='h-full text-stone-300 font-semibold '>
+            <button className='h-full text-stone-300 font-semibold cursor-pointer '>
                 <Search size={20}/>
             </button>
             <input
