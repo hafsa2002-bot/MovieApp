@@ -64,8 +64,9 @@ function MovieCard(props) {
       }
       <div
           onClick={(e) => {
-              addToFavoritesFunction(!favorite)
               e.preventDefault()
+              e.stopPropagation()
+              addToFavoritesFunction(!favorite)
           }} 
           className="group bg-stone-900 rounded-full flex justify-center items-center absolute p-1.5 top-2 right-2 cursor-pointer"
       >
