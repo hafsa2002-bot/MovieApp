@@ -17,14 +17,14 @@ function PaginationButtons({currentPage, setCurrentPage, totalPages}) {
         return pages;
     };
   return (
-    <div className="flex justify-center mt-4 space-x-3">
+    <div className="flex  justify-center mt-4 space-x-3">
         <button
             onClick={() =>
                 setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
             }
-            className="px-3 py-1 cursor-pointer hover:text-stone-200 hover:border-stone-200 rounded-full bg-stone-900 text-stone-400 border border-stone-400 flex justify-center gap-2"
+            className="lg:px-3 p-1 lg:py-1 cursor-pointer hover:text-stone-200 hover:border-stone-200 rounded-full bg-stone-900 text-stone-400 border border-stone-400 flex justify-center gap-2"
         >
-            <ArrowLeft/> Prev
+            <ArrowLeft/> <span className='lg:flex hidden'>Prev</span>
         </button>
 
         {getVisiblePages().map((page) => (
@@ -47,9 +47,9 @@ function PaginationButtons({currentPage, setCurrentPage, totalPages}) {
                 setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
                 window.scrollTo(0, 700)
             }}
-            className="px-3 py-1 cursor-pointer rounded-full  flex justify-center gap-2 bg-stone-900 text-stone-400 hover:text-stone-200 hover:border-stone-200 border border-stone-400 "
+            className="lg:px-3 p-1 lg:py-1  cursor-pointer rounded-full  flex justify-center gap-2 bg-stone-900 text-stone-400 hover:text-stone-200 hover:border-stone-200 border border-stone-400 "
         >
-            Next <ArrowRight/>
+            <span className='lg:flex hidden'>Next</span> <ArrowRight/>
         </button>
     </div>
   )

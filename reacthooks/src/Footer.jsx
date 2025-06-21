@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <footer className=" text-white bg-stone-950  py-12 px-6 md:px-28">
+    <footer className=" text-white bg-stone-950  py-12 px-6 md:px-28 flex lg:flex-col flex-col">
         <div className='flex justify-between'>
             <div className='flex  gap-2'>
                 <Clapperboard size={40} />
-                <img className='w-26' src='/images/logo2.png' />
+                <img className='lg:w-26 w-18' src='/images/logo2.png' />
             </div>
             <div>
                 <ul className='flex gap-4'>
@@ -19,7 +19,7 @@ function Footer() {
                 </ul>
             </div>
         </div>
-        <div className='flex justify-between gap-8 mt-7 text-stone-300'>
+        <div className='flex lg:flex-row flex-wrap lg:gap-8 gap-x-7 gap-y-4 lg:mt-7 mt-10 text-stone-300 h-full'>
             <div className='flex flex-col '>
                 <h2 className='font-bold text-white mb-1 text-xl uppercase'>Features</h2>
                 <Link className='hover:underline pb-1'>Streaming</Link>

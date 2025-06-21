@@ -40,7 +40,7 @@ function MovieList() {
     if(error) 
         return <h2 className='text-3xl font-semibold mt-70 bg-white text-center py-30'>Error:{error}</h2>
     return (
-        <div className=' relative bottom-44 pt-4  bg-blend-multiply -mb-10 px-10'>
+        <div className=' relative bottom-44 pt-4  bg-blend-multiply -mb-10 lg:px-10 px-3'>
             {/* trending movies */}
             <section className='mb-12'>
                 <div className='flex items-center mb-5 justify-between'>
