@@ -37,6 +37,7 @@ function MovieCard(props) {
     <Link 
       to={`/movie/${props.data.id}`} 
       onClick={() => window.scrollTo(0, 0)}
+      alt={`${props.data.original_title}`}
       className=' relative rounded-xl overflow-hidden shrink-0 lg:h-64 lg:w-48 h-52 w-28'
     >
       {props.data.poster_path

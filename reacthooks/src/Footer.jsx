@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <footer className=" text-white bg-stone-950  py-12 px-6 md:px-28 flex lg:flex-col flex-col">
+    <footer className=" text-white bg-stone-950  py-12 px-3 lg:px-28 flex lg:flex-col flex-col">
         <div className='flex justify-between'>
             <div className='flex  gap-2'>
                 <Clapperboard size={40} />
@@ -21,31 +21,31 @@ function Footer() {
         </div>
         <div className='flex lg:flex-row flex-wrap lg:gap-8 gap-x-7 gap-y-4 lg:mt-7 mt-10 text-stone-300 h-full'>
             <div className='flex flex-col '>
-                <h2 className='font-bold text-white mb-1 text-xl uppercase'>Features</h2>
+                <h2 className='font-bold text-white mb-1 lg:text-xl uppercase'>Features</h2>
                 <Link className='hover:underline pb-1'>Streaming</Link>
                 <Link className='hover:underline pb-1'>TV Shows</Link>
                 <Link className='hover:underline pb-1'>Recently Added</Link>
             </div>
             <div className='flex flex-col'>
-                <h2 className='font-bold text-white  mb-1 text-xl uppercase'>Company</h2>
+                <h2 className='font-bold text-white  mb-1 lg:text-xl uppercase'>Company</h2>
                 <Link className='hover:underline pb-1'>About US</Link>
                 <Link className='hover:underline pb-1'>Our Team</Link>
             </div>
             <div className='flex flex-col'>
-                <h2 className='font-bold text-white  mb-1 text-xl uppercase'>Program</h2>
+                <h2 className='font-bold text-white  mb-1 lg:text-xl uppercase'>Program</h2>
                 <Link className='hover:underline pb-1'>VOD</Link>
                 <Link className='hover:underline pb-1'>Articles</Link>
                 <Link className='hover:underline pb-1'>New Realses</Link>
                 <Link className='hover:underline pb-1'>Help</Link>
             </div>
             <div className='flex flex-col'>
-                <h2 className='font-bold text-white  mb-1 text-xl uppercase'>Legal</h2>
+                <h2 className='font-bold text-white  mb-1 lg:text-xl uppercase'>Legal</h2>
                 <Link className='hover:underline pb-1'>Terms of Use</Link>
                 <Link className='hover:underline pb-1'>Privacy Policy</Link>
                 <Link className='hover:underline pb-1'>Legal Notices</Link>
             </div>
             <div className='flex flex-col '>
-                <h2 className='font-bold text-white  mb-1 text-xl uppercase'>Contact</h2>
+                <h2 className='font-bold text-white  mb-1 lg:text-xl uppercase'>Contact</h2>
                 <Link onClick={() => window.scrollTo(0, 0)} className='hover:underline pb-1' to="/contact">Contact Us</Link>
             </div>
         </div>

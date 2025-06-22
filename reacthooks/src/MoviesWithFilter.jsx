@@ -60,7 +60,7 @@ function MoviesWithFilter() {
   return (
     <div>
         <section className=''>
-            <div className='flex gap-3 pb-4 customScrollBar w-full lg:text-base text-sm overflow-x-auto' >
+            <div className='flex items-center gap-3 pb-4 customScrollBar w-full lg:text-base text-sm overflow-x-auto' >
                 <div
                     onClick={() => setFilterOption("popular")} 
                     className={`cursor-pointer rounded-full  shrink-0 lg:px-3 px-2 py-1 font-semibold 
