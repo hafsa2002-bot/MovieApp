@@ -19,7 +19,7 @@ function Footer() {
                 </ul>
             </div>
         </div>
-        <div className='flex lg:flex-row flex-wrap lg:gap-8 gap-x-7 gap-y-4 lg:mt-7 mt-10 text-stone-300 h-full'>
+        <div className='flex lg:flex-row lg:flex-nowrap lg:justify-between flex-wrap lg:gap-8 gap-x-7 gap-y-4 lg:mt-7 mt-10 text-stone-300 h-full'>
             <div className='flex flex-col '>
                 <h2 className='font-bold text-white mb-1 lg:text-xl uppercase'>Features</h2>
                 <Link className='hover:underline pb-1'>Streaming</Link>

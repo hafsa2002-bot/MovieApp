@@ -7,6 +7,7 @@ import ProgressCircle from './ProgressCircle'
 import { useContextFunction } from './Context'
 import Trailer from './Trailer'
 import { format } from 'date-fns'
+import ViewMoviePhone from './ViewMoviePhone'
 
 function ViewMovie() {
     const {id} = useParams()
@@ -67,14 +68,15 @@ function ViewMovie() {
         }, [favoritesMovies, id])
   return (
 
-    <div className='mt-20'>
+    <div className='lg:mt-20 mt-16 '>
         {
             !movieDetails 
             ? (
                 <SpinnerLoader/>
             ): (
                 <>
-                    <div className='relative h-[87vh] w-full   overflow-hidden '>
+                    {/* laptop version */}
+                    <div className='relative h-[87vh] w-full overflow-hidden lg:flex hidden '>
                         {
                             movieDetails?.backdrop_path
                             ?   <img className='w-full h-screen shadow-2xl shadow-black object-cover absolute inset-0 -z-50 left-40' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
@@ -83,7 +85,7 @@ function ViewMovie() {
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/92 to-black/30 -z-40"  />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent -z-40" />
 
-                        <div className='absolute left-14 top-12 z-10 h-10/12  flex items-center  gap-12 ' >
+                        <div className='absolute left-14 top-12 z-10 h-10/12 flex items-center  gap-12 ' >
                         {
                             movieDetails?.poster_path
                             ?   <img className='h-full rounded-lg' src ={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}  />
@@ -158,6 +160,19 @@ function ViewMovie() {
                             </div>
                         </div>
                     </div>
+
+                    <ViewMoviePhone 
+                        movieDetails={movieDetails}
+                        movieTime={movieTime} 
+                        showFavoriteDetails={showFavoriteDetails}
+                        setShowFavoriteDetails={setShowFavoriteDetails}
+                        addToFavoritesFunction={addToFavoritesFunction}
+                        favorite={favorite}
+                        showAddToListDetails={showAddToListDetails}
+                        setShowAddToListDetails={setShowAddToListDetails}
+                        setShowTrailer={setShowTrailer}
+                    />
+
                     {showTrailer && <Trailer id={id} setShowTrailer={setShowTrailer} /> }
                 </>
             )

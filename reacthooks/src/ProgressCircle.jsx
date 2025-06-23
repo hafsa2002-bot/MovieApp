@@ -24,7 +24,7 @@ function ProgressCircle({ percent }) {
     
 
   return (
-    <div className="relative w-14 h-14 cursor-pointer rounded-full flex items-center justify-center bg-[#0f1b1d] shadow-inner  ">
+    <div className="relative lg:w-14 lg:h-14 w-12 h-12 cursor-pointer rounded-full flex items-center justify-center bg-[#0f1b1d] shadow-inner  ">
       {/* Progress Ring */}
       <div
         className="absolute inset-0 rounded-full "
@@ -35,7 +35,7 @@ function ProgressCircle({ percent }) {
 
       {/* Inner Circle */}
       <div className="absolute inset-1 bg-[#0f1b1d] rounded-full flex items-center  justify-center">
-        <span className="text-white text-xl font-bold">
+        <span className="text-white lg:text-xl text-base lg:font-bold font-semibold">
           {percent}
           <sup className="text-xs align-super">%</sup>
         </span>

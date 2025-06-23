@@ -47,8 +47,8 @@ function Trailer({id, setShowTrailer}) {
   return (
     <div className='w-screen h-screen top-4  right-0 fixed z-50 flex justify-center items-center ' style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
         {/* once you click you have to show the trailer */}
-        <div className=' bg-black/90 border border-stone-800  w-[960px]  rounded-md  flex flex-col justify-center gap-4 overflow-hidden'>
-            <div className='text-white px-7 pb-2 pt-4 flex justify-between w-full '>
+        <div className=' bg-black/90 border border-stone-800  lg:w-[960px] w-11/12  rounded-md  flex flex-col justify-center gap-4 overflow-hidden'>
+            <div className='text-white lg:px-7 px-3 pb-2 pt-4 flex justify-between w-full '>
                 <h1 className='text-xl font-semibold'>Play Trailer</h1>
                 <div
                     onClick={() => setShowTrailer(false)}
@@ -59,16 +59,32 @@ function Trailer({id, setShowTrailer}) {
             </div>
 
             {trailerUrl && (
+                <div className='w-full aspect-video lg:w-[960px] lg:h-[415px]'>
+                    <iframe
+                        // width="960"
+                        // height="415"
+                        src={trailerUrl.replace("watch?v=", "embed/")}
+                        title="YouTube trailer"
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        className='w-full h-full'
+                    ></iframe>
+                </div>
+            )}
+
+            {/* {trailerUrl && (
                 <iframe
-                    width="960"
-                    height="415"
+                    width="370"
+                    height="300"
                     src={trailerUrl.replace("watch?v=", "embed/")}
                     title="YouTube trailer"
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen
+                    className='flex lg:hidden'
                 ></iframe>
-            )}
+            )} */}
         </div>
     </div>
   )
