@@ -4,7 +4,7 @@ import axios from 'axios'
 import {format} from 'date-fns'
 import { Link } from 'react-router-dom'
 
-function SearchMovieInput({scrolled}) {
+function SearchMovieInput({scrolled, setShowSearch}) {
     const [query, setQuery] = useState("")
     // const [scrolled, setScrolled] = useState(false)
     const [searchedMovies, setSearchedMovies] = useState([])
@@ -32,13 +32,13 @@ function SearchMovieInput({scrolled}) {
     //     fetchMovies()
     // }, [])
   return (
-    <div className='relative '>
+    <div className='relative flex justify-between items-center lg:px-0 px-3'>
         <form action="/filter"  
             className={`
-            h-10 px-3  flex justify-between overflow-hidden gap-2 
+            h-10 px-3  flex lg:justify-between overflow-hidden lg:w-full lg:gap-2 gap-4
             ${(query != "" && searchedMovies.length > 0) ? "rounded-t-lg" : "rounded-lg"}
             ${(window.location.pathname === "/" && !scrolled)  ? "bg-transparent" : "bg-[#1a1a1a]"}
-            ` }
+            `}
         >
             <button className='h-full text-stone-300 font-semibold cursor-pointer '>
                 <Search size={20}/>
@@ -57,12 +57,18 @@ function SearchMovieInput({scrolled}) {
                 id="search" 
                 placeholder="Search For Movies..."  
                 autoComplete='off'
-                className='  outline-none text-white placeholder-stone-300 placeholder:text-base w-60 '
+                className='  outline-none text-white placeholder-stone-300 text-base w-60 '
             />
         </form>
+        <div 
+            className='lg:hidden flex'
+            onClick={() => setShowSearch(false)}
+        >
+            <X color="white" />
+        </div>
         {
             (query) && (
-                <div className='bg-[#1a1a1a] w-full  rounded-b-lg text-white absolute'>
+                <div className='lg:bg-[#1a1a1a] bg-[#0F0F0F] lg:w-full w-screen  rounded-b-lg text-white absolute lg:top-10 top-12 right-0 '>
                     <div className='p-3  '>
                         {
                             searchedMovies.length > 0  

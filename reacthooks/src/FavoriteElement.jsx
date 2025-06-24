@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Check, Heart, X } from 'lucide-react';
+import { Check, Heart, List, X } from 'lucide-react';
 import { useContextFunction } from './Context'
 import { Link } from 'react-router-dom';
 
@@ -77,14 +77,14 @@ function FavoriteElement({movie}) {
                     }}  
                     className='flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
                 >
-                    <Heart 
+                    <List 
                         className={`
                             w-5 h-5
-                            ${favorite && 'fill-red-600 stroke-red-600'}
+                            ${favorite && 'fill-white '}
                         `}
 
                     />
-                    Favorite
+                    Add to list
                 </div>
                 {/* <div
                     onClick={(e) => {
