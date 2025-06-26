@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { X } from 'lucide-react';
 
-function Trailer({id, setShowTrailer}) {
+function Trailer({id, setShowTrailer, setUrl}) {
     const [trailerUrl, setTrailerUrl] = useState()
     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
 
@@ -32,6 +32,7 @@ function Trailer({id, setShowTrailer}) {
                     console.log("Trailer URL: ", trailerUrl);
                     // Optionally store it in state
                     setTrailerUrl(trailerUrl);
+                    setUrl(trailerUrl);
                 } else {
                     console.log("No trailer found.");
                 }
@@ -72,19 +73,6 @@ function Trailer({id, setShowTrailer}) {
                     ></iframe>
                 </div>
             )}
-
-            {/* {trailerUrl && (
-                <iframe
-                    width="370"
-                    height="300"
-                    src={trailerUrl.replace("watch?v=", "embed/")}
-                    title="YouTube trailer"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    className='flex lg:hidden'
-                ></iframe>
-            )} */}
         </div>
     </div>
   )

@@ -3,13 +3,17 @@ import axios from 'axios'
 import { Check, Heart, List, X } from 'lucide-react';
 import { useContextFunction } from './Context'
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns'
 
-function FavoriteElement({movie}) {
+function FavoriteElement({movie, setSuccessMessage}) {
     // const [movieInfo, setMovieInfo] = useState([]) 
-    // const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
+    const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
     const [favorite, setFavorite] = useState(false)
-    const {addToFavoritesMovies, setFavoritesMovies, favoritesMovies} = useContextFunction()
-    const [showMessage, setShowMessage] = useState({showNotification: false, MovieName: ''})
+    const {addToFavoritesMovies, setFavoritesMovies, favoritesMovies, addToYourMoviesList} = useContextFunction()
+    const [showSuccessMessage, setShowSuccessMessage] = useState({showNotification: false, MovieName: ''})
+    const [showAddToListDetails, setShowAddToListDetails] = useState(false)
+    const [url, setUrl] = useState()
+    const [movieTime, setMovieTime] = useState("")
 
     function formatDate(dateStr) {
         return new Date(dateStr).toLocaleDateString("en-US", {
@@ -24,12 +28,11 @@ function FavoriteElement({movie}) {
             setFavorite(true)
             addToFavoritesMovies(movie)
         }else{
-          // remove it from favorites
+            // remove it from favorites
             setFavorite(false)
             const updatedList = favoritesMovies.filter((fav) => fav.id !== movie.id)
             localStorage.setItem('favoritesMovies', JSON.stringify(updatedList))
             setFavoritesMovies(updatedList)
-            // showDeleteFromFavoritesMessage(movie.title)
         }
     }
 
@@ -38,11 +41,54 @@ function FavoriteElement({movie}) {
         setFavorite(isFavorite)
     }, [favoritesMovies, movie.id])
 
-    
-    const showDeleteFromFavoritesMessage = (movieName) => {
-        setShowMessage({showNotification: true, MovieName: movieName})
-        setTimeout(() => setShowMessage({showNotification: false, MovieName: ''}), 5000)
+    useEffect(() => {
+        if (!movie.id) return;
+
+        axios
+            .get(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api_key}`)
+            .then(response => {
+                const videos = response.data.results;
+
+                const trailer = videos.find(
+                    (video) =>
+                    video.type === "Trailer" &&
+                    video.site === "YouTube" &&
+                    video.official
+                );
+
+                const fallbackTrailer = videos.find(
+                    (video) => video.type === "Trailer" && video.site === "YouTube"
+                );
+
+                const selectedTrailer = trailer || fallbackTrailer;
+
+                if (selectedTrailer) {
+                    const trailerUrl = `https://www.youtube.com/watch?v=${selectedTrailer.key}`;
+                    setUrl(trailerUrl);
+                } else {
+                    console.log("No trailer found.");
+                }
+            })
+            .catch(error => {
+                console.log("Error fetching trailer: ", error);
+            });
+    }, [movie.id]);
+
+    const getMovieTimeInMinutes = (min) => {
+        const h = parseInt(min / 60)
+        // console.log("hours: ", h)
+        const m = parseInt((min/60 - h) * 60)
+        // console.log("minutes: ", m)
+        setMovieTime(`${h}h ${m}m`)
     }
+
+    useEffect(() => {
+        if (movie?.runtime) {
+            getMovieTimeInMinutes(movie.runtime);
+        }
+    }, [movie?.runtime]);
+
+    
         
   return (
     <div className='bg-[#1a1a1a] shadow-lg rounded-xl overflow-hidden flex' >
@@ -71,42 +117,37 @@ function FavoriteElement({movie}) {
                     Favorite
                 </div>
                 <div
-                    onClick={(e) => {
-                        addToFavoritesFunction(!favorite)
-                        e.preventDefault()
-                    }}  
-                    className='flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
+                    onMouseEnter={() => setShowAddToListDetails(true)} 
+                    onMouseLeave={() => setShowAddToListDetails(false)}
+                    onClick={() => {
+                        if(movie){
+                            const movieObj = {
+                                id: Date.now(),
+                                title: movie.original_title || null,
+                                date: movie.release_date
+                                    ? format(new Date(movie.release_date), "dd/MM/yyyy")
+                                    : null,
+                                genres: movie.genres || [],
+                                url,
+                                duration: movieTime || null,
+                                photo: movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                    : null,
+                            };
+                            addToYourMoviesList(movieObj)
+                            // setShowSuccessMessage(true)
+                            // setTimeout(() => setShowSuccessMessage(false), 1500)
+                            setSuccessMessage(`${movie.original_title} added to your list`);
+                            setTimeout(() => setSuccessMessage(null), 1500);
+                        }
+                    }} 
+                    className='relative flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
                 >
-                    <List 
-                        className={`
-                            w-5 h-5
-                            ${favorite && 'fill-white '}
-                        `}
-
-                    />
+                    <List  size="15" />
                     Add to list
                 </div>
-                {/* <div
-                    onClick={(e) => {
-                        // showDeleteFromFavoritesMessage(movie.title)
-                        addToFavoritesFunction(!favorite)
-                        e.preventDefault()
-                    }} 
-                    className='flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm cursor-pointer '>
-                    <X size={21}/>
-                    Remove
-                </div> */}
             </div>
         </div>
-        {/* {showMessage.showNotification && (
-            <div className='bg-green-700  p-3 rounded-xl text-white fixed top-6 left-6 z-50'>
-                <h2 className='font-bold flex gap-1.5 items-center'> 
-                    <div className=' p-1 bg-white text-green-700 rounded-full flex justify-center items-center'><Check size={13} /> </div>
-                    Success
-                </h2>
-                <p>{showMessage.MovieName} was removed from favorites</p>
-            </div>
-        )} */}
     </div>
   )
 }

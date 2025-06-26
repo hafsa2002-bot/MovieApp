@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {Heart, CirclePlus, List, Search, House, AlignJustify, Home, Mail} from 'lucide-react'
 import SearchMovieInput from './SearchMovieInput'
@@ -8,6 +8,7 @@ function Nav() {
     const navigate = useNavigate()
     const [showSearch, setShowSearch] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
+    const dropdownRef = useRef(null)
     
     useEffect(() => {
         const handleScroll = () => {
@@ -16,6 +17,17 @@ function Nav() {
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+                setShowMenu(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    })
   return (
     <div>
         {/* bg-[#0F0F0F] */}
@@ -94,7 +106,7 @@ function Nav() {
                 <AlignJustify color="white" />
                 {
                     showMenu && 
-                    <div className='bg-[#0F0F0F] border border-stone-400 rounded-md w-40 shadow-xl items-center absolute flex flex-col'>
+                    <div ref={dropdownRef} className='bg-[#0F0F0F] border border-stone-400 rounded-md w-40 shadow-xl items-center absolute flex flex-col'>
                         <NavLink 
                             to="/" 
                             className={({isActive}) => `text-stone-400 py-2.5 hover:bg-stone-900  border-stone-400 w-full px-3  items-center text-lg flex gap-2 ${isActive ? " text-white  " : "k hover:text-white"}`} 
@@ -158,61 +170,6 @@ function Nav() {
                     )
                 }
         </nav>
-
-
-
-        {/* <nav 
-            className={` lg:px-5 px-3 pt-3 pb-2 font-semibold lg:flex hidden justify-between items-center fixed top-0 w-full z-30 transition-all duration-300 ${
-                (window.location.pathname === "/" && !scrolled)
-                    ? "bg-transparent"
-                    : "bg-[#0F0F0F] shadow-md"
-            }`}
-        >
-            <div className='flex justify-center items-center gap-12'>
-                <div
-                    onClick={() => {
-                        navigate("/")
-                        window.scrollTo(0, 0)
-                    }}
-                    className='lg:w-36 w-24 cursor-pointer'
-                >
-                    <img src='/images/logo2.png' />
-                </div>
-
-                <div className='uppercase flex gap-7'>
-                    <Link to="/" className="text-white outline-none hover:border-white hover:-2 hover:pb-1">
-                        Home
-                    </Link>
-                    <NavLink 
-                        to="/my_list"  
-                        className={({isActive}) => isActive ? "text-white  border-b-2 pb-1 border-white" : "text-white hover:border-white hover:border-b-2 hover:pb-1"} 
-                    >
-                        My List
-                    </NavLink>
-                    <NavLink 
-                        to="/favorites"
-                        onClick={() => {
-                            window.scrollTo(0, 0)
-                        }} 
-                        className={({isActive}) => isActive ? "text-white   border-b-2 pb-1 border-white" : "text-white hover:border-white hover:border-b-2 hover:pb-1"}
-                    >
-                        Favorites
-                    </NavLink>
-                    <NavLink 
-                        to="/contact"
-                        onClick={() => {
-                            window.scrollTo(0, 0)
-                        }}   
-                        className={({isActive}) => `text-white pb-1  ${isActive ? 'border-b-2 border-white' : ' hover:border-b-2 hover:border-white'}`}
-                    >
-                        Contact
-                    </NavLink>
-                </div>
-            </div>
-            <div className='border mr-72'>
-                <SearchMovieInput scrolled={scrolled}/>
-            </div>
-        </nav> */}
     </div>
   )
 }

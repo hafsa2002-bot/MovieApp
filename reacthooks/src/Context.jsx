@@ -46,12 +46,12 @@ export function ContextProvider({children}){
             return prevFavorites
         })
     }
-
+    
     const addToYourMoviesList = (movie) => {
         console.log("adding to your list: ", movie);
         setMoviesList((prevList) => {
             if(!Array.isArray(prevList)) return [movie]
-            const foundItem = prevList.find((item) => item.id === movie.id)
+            const foundItem = prevList.find((item) => item.title === movie.title)
             if(!foundItem){
                 return [...prevList, movie]
             }

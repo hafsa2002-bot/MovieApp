@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import {Heart, Image, List, Play} from 'lucide-react'
+import {Check, Heart, Image, List, Play} from 'lucide-react'
 import SpinnerLoader from './SpinnerLoader'
 import ProgressCircle from './ProgressCircle'
 import { useContextFunction } from './Context'
@@ -19,6 +19,42 @@ function ViewMovie() {
     const [showTrailer, setShowTrailer] = useState(false)
     const [showAddToListDetails, setShowAddToListDetails] = useState(false)
     const api_key = "8def2fa47c86a07209cafb1c6eb4409b"
+    const [url, setUrl] = useState()
+    const {addToYourMoviesList, moviesList} = useContextFunction()
+    const [showMessage, setShowMessage] = useState(false)
+
+    useEffect(() => {
+        if (!id) return;
+
+        axios
+            .get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api_key}`)
+            .then(response => {
+                const videos = response.data.results;
+
+                const trailer = videos.find(
+                    (video) =>
+                    video.type === "Trailer" &&
+                    video.site === "YouTube" &&
+                    video.official
+                );
+
+                const fallbackTrailer = videos.find(
+                    (video) => video.type === "Trailer" && video.site === "YouTube"
+                );
+
+                const selectedTrailer = trailer || fallbackTrailer;
+
+                if (selectedTrailer) {
+                    const trailerUrl = `https://www.youtube.com/watch?v=${selectedTrailer.key}`;
+                    setUrl(trailerUrl);
+                } else {
+                    console.log("No trailer found.");
+                }
+            })
+            .catch(error => {
+                console.log("Error fetching trailer: ", error);
+            });
+    }, [id]);
 
     const getMovieDetailsById = () => {
         axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${api_key}`)
@@ -123,7 +159,26 @@ function ViewMovie() {
                                     <div
                                         onMouseEnter={() => setShowAddToListDetails(true)} 
                                         onMouseLeave={() => setShowAddToListDetails(false)}
-                                        // onClick={() => addToFavoritesFunction(!favorite)}
+                                        onClick={() => {
+                                            if(movieDetails){
+                                                const movie = {
+                                                    id: Date.now(),
+                                                    title: movieDetails.original_title || null,
+                                                    date: movieDetails.release_date
+                                                        ? format(new Date(movieDetails.release_date), "dd/MM/yyyy")
+                                                        : null,
+                                                    genres: movieDetails.genres || [],
+                                                    url,
+                                                    duration: movieTime || null,
+                                                    photo: movieDetails.poster_path
+                                                        ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                                                        : null,
+                                                };
+                                                addToYourMoviesList(movie)
+                                                setShowMessage(true)
+                                                setTimeout(() => setShowMessage(false), 1500)
+                                            }
+                                        }}
                                         className={`bg-gray-900 relative flex justify-center items-center w-10 h-10 rounded-full cursor-pointer`}
                                     >
                                         <List size="15" />
@@ -173,7 +228,16 @@ function ViewMovie() {
                         setShowTrailer={setShowTrailer}
                     />
 
-                    {showTrailer && <Trailer id={id} setShowTrailer={setShowTrailer} /> }
+                    {showTrailer && <Trailer id={id} setShowTrailer={setShowTrailer} setUrl={setUrl} /> }
+                    {
+                        showMessage && 
+                            <div className='bg-stone-800 shadow text-stone-300 fixed z-50 top-24 right-5 border border-stone-300 rounded-lg flex justify-center items-center gap-2 p-3'>
+                                <div className='w-5 h-5 bg-green-700 rounded-full flex items-center justify-center'>
+                                    <Check className='text-white' size={17}/>
+                                </div>
+                                <p>{movieDetails?.original_title} added to you list</p>
+                            </div>
+                    }
                 </>
             )
         }
