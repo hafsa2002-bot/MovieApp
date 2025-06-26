@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {Link, NavLink, useNavigate} from 'react-router-dom'
-import {Heart, CirclePlus, List, Search, House, AlignJustify} from 'lucide-react'
+import {Heart, CirclePlus, List, Search, House, AlignJustify, Home, Mail} from 'lucide-react'
 import SearchMovieInput from './SearchMovieInput'
 
 function Nav() {
     const [scrolled, setScrolled] = useState(false)
     const navigate = useNavigate()
     const [showSearch, setShowSearch] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
     
     useEffect(() => {
         const handleScroll = () => {
@@ -86,8 +87,50 @@ function Nav() {
                     : "bg-[#0F0F0F] shadow-md"
             }`}
         >
-            <div>
+            <div 
+                onClick={() => setShowMenu(!showMenu)}
+                className='relative' 
+            >
                 <AlignJustify color="white" />
+                {
+                    showMenu && 
+                    <div className='bg-[#0F0F0F] border border-stone-400 rounded-md w-40 shadow-xl items-center absolute flex flex-col'>
+                        <NavLink 
+                            to="/" 
+                            className={({isActive}) => `text-stone-400 py-2.5 hover:bg-stone-900  border-stone-400 w-full px-3  items-center text-lg flex gap-2 ${isActive ? " text-white  " : "k hover:text-white"}`} 
+                        >
+                            <Home size={22} />
+                            Home
+                        </NavLink>
+                        <NavLink 
+                            to="/my_list"  
+                            className={({isActive}) => `text-stone-400 py-2.5 hover:bg-stone-900  border-stone-400 w-full px-3 items-center text-lg flex gap-2 ${isActive ? "text-white" : " hover:text-white"}`} 
+                        >
+                            <List size={22}/>
+                            My List
+                        </NavLink>
+                        <NavLink 
+                            to="/favorites"
+                            onClick={() => {
+                                window.scrollTo(0, 0)
+                            }} 
+                            className={({isActive}) => `text-stone-400 py-2.5 hover:bg-stone-900  border-stone-400 w-full px-3 items-center text-lg  flex gap-2 ${isActive ? "text-white " : " hover:text-white"}`}
+                        >
+                            <Heart size={22}/>
+                            Favorites
+                        </NavLink>
+                        <NavLink 
+                            to="/contact"
+                            onClick={() => {
+                                window.scrollTo(0, 0)
+                            }}   
+                            className={({isActive}) => `text-stone-400 py-2.5 hover:bg-stone-900 w-full px-3  items-center text-lg flex gap-2 ${isActive ? "text-white" :  ' hover:text-white'}`}
+                        >
+                            <Mail size={22}/>
+                            Contact
+                        </NavLink>
+                    </div>
+                }
             </div>
             <div
                 onClick={() => {
@@ -98,7 +141,13 @@ function Nav() {
             >
                 <img src='/images/logo2.png' />
             </div>
-            <div onClick={() => setShowSearch(!showSearch)} className='relative' >
+            <div 
+                onClick={() => {
+                    setShowSearch(!showSearch)
+                    setShowMenu(false)
+                }} 
+                className='relative' 
+            >
                 <Search color="white" />
             </div>
                 {
@@ -131,7 +180,7 @@ function Nav() {
                 </div>
 
                 <div className='uppercase flex gap-7'>
-                    <Link to="/" className="text-white outline-none hover:border-white hover:border-b-2 hover:pb-1">
+                    <Link to="/" className="text-white outline-none hover:border-white hover:-2 hover:pb-1">
                         Home
                     </Link>
                     <NavLink 

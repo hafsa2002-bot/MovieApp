@@ -5,8 +5,8 @@ import { Heart, List, Play } from 'lucide-react'
 
 function ViewMoviePhone({movieDetails, movieTime, showFavoriteDetails, setShowFavoriteDetails, addToFavoritesFunction, favorite, showAddToListDetails, setShowAddToListDetails, setShowTrailer}) {
   return (
-    <div>
-        <div className='relative  h-[40vh] w-full overflow-hidden flex lg:hidden '>
+    <div className='lg:hidden'>
+        <div className='relative  h-[40vh] w-full overflow-hidden flex  '>
             {
                 movieDetails?.backdrop_path
                 ?   <img className='w-full h-full shadow-2xl shadow-black object-cover absolute inset-0 -z-50 right-0' src ={`https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}`}  />
@@ -39,7 +39,7 @@ function ViewMoviePhone({movieDetails, movieTime, showFavoriteDetails, setShowFa
                         onClick={() => addToFavoritesFunction(!favorite)}
                         className={`bg-stone-800 relative flex justify-center items-center w-12 h-12 rounded-full cursor-pointer`}
                     >
-                        <Heart  className={`${favorite ? 'fill-red-600 stroke-red-600' : 'fill-white'}`}/>
+                        <Heart  className={`${favorite ? 'fill-red-600 stroke-red-600' : 'fill-stone-300 stroke-stone-300'}`}/>
                         {
                             showFavoriteDetails && (
                                 <div className='absolute top-12 bg-stone-900 border-stone-400 border text-sm text-white w-32 rounded-md px-1 py-1 text-center '>Mark as favorite</div>
