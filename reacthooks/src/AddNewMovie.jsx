@@ -56,12 +56,12 @@ function AddNewMovie() {
   }
 
   return (
-    <div className='pt-24  bg-[#0f0f0f] px-10 flex flex-col items-center '>
+    <div className='pt-24  bg-[#0f0f0f] lg:px-10 md:px-8 sm:px-6 px-4 flex flex-col items-center '>
         <p className='text-white text-3xl font-bold  mb-7 flex justify-center gap-2 items-center'>Add New Movie <Popcorn size={30} /> </p>
-        <form  onSubmit={handleSubmit} className='w-9/12  text-white bg-stone-900 rounded-lg px-10 py-10 flex flex-col gap-4 mb-20 '>
-          <div className='flex justify-between items-center gap-4'>
+        <form  onSubmit={handleSubmit} className='lg:w-9/12 md:w-10/12  w-10/12  text-white bg-stone-900  rounded-lg px-10 py-10 flex flex-col gap-4 mb-20 '>
+          <div className='flex lg:flex-row flex-col justify-between lg:items-center gap-4'>
             {/* title */}
-            <div className='flex flex-col gap-1.5 w-1/2'>
+            <div className='flex flex-col gap-1.5  lg:w-1/2  '>
               <label className='text-sm font-semibold'>Title <span className='text-red-500 '>*</span></label>
               <input
                 type="text" 
@@ -77,7 +77,7 @@ function AddNewMovie() {
             </div>
 
             {/* release year / date picker */}
-            <div className='flex flex-col gap-1.5 w-1/2'>
+            <div className='flex flex-col gap-1.5 lg:w-1/2'>
               <label htmlFor=""  className='text-sm font-semibold'>Release Year</label>
               <input 
                 type="date" 
@@ -93,7 +93,7 @@ function AddNewMovie() {
           {/* genres */}
           <div className='flex flex-col gap-2 my-1.5'>
             <label htmlFor=""  className='text-sm font-semibold'>Genre(s)</label>
-            <div className="grid grid-cols-5 gap-2 text-sm">
+            <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2 text-sm">
               {
                 genres.map((genre) => (
                   <label key={genre} className="flex items-center gap-2">
@@ -111,9 +111,9 @@ function AddNewMovie() {
             </div>
           </div>
 
-          <div className='flex justify-between items-end gap-4'>
+          <div className='flex lg:flex-row flex-col lg:justify-between lg:items-end gap-4'>
             {/* ptrailer url */}
-            <div className='flex flex-col gap-1.5 w-1/2 '>
+            <div className='flex flex-col gap-1.5 lg:w-1/2 '>
               <label htmlFor=""  className='text-sm font-semibold'>Trailer URL</label>
               <input 
                 type="url" 
@@ -126,7 +126,7 @@ function AddNewMovie() {
               />
             </div>
             {/* duration */}
-            <div className='flex flex-col gap-1.5 w-1/2 '>
+            <div className='flex flex-col gap-1.5 lg:w-1/2 '>
               <label htmlFor=""  className='text-sm font-semibold'>Duration</label>
               <input 
                 type="time" 
@@ -139,9 +139,9 @@ function AddNewMovie() {
               />
             </div>
           </div>
-          <div className='flex items-center gap-4 mt-3'>
+          <div className='lg:flex items-center gap-4 mt-3'>
             {/* photo or link */}
-            <div className='flex flex-col gap-1.5  w-1/2'>
+            <div className='flex flex-col gap-1.5  lg:w-1/2'>
               <label 
                 htmlFor="photo"
                 className='bg-stone-700 cursor-pointer rounded-lg py-2.5 px-2 font-semibold text-sm'
@@ -149,7 +149,7 @@ function AddNewMovie() {
                 {
                   photo
                   ? <span></span>
-                  : <span className=' flex items-center gap-1.5'>Upload Image <ImageUp size={19} /></span>
+                  : <span className=' flex items-center lg:gap-1.5 gap-2.5'>Upload Image <ImageUp size={19} /></span>
                 }
               </label>
               <input 
@@ -161,7 +161,7 @@ function AddNewMovie() {
                 className='hidden' 
               />
             </div>
-            <div className='w-1/2'></div>
+            <div className='lg:w-1/2'></div>
           </div>
 
           <div className='w-full flex justify-end items-center gap-2.5 mt-3'>

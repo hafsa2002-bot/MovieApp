@@ -7,7 +7,7 @@ function Favorites() {
   const {favoritesMovies} = useContextFunction()
   const [successMessage, setSuccessMessage] = useState(null);
   return (
-    <div className='pt-24 pb-10   px-10 bg-[#0f0f0f] text-white'>
+    <div className='lg:pt-24 pt-20 pb-10   lg:px-10 px-5 bg-[#0f0f0f] text-white'>
       {
         favoritesMovies && favoritesMovies.length > 0 ? (
           <>

@@ -20,9 +20,9 @@ function SearchedElement({movie}) {
         }
         </Link>
         <div className='p-4 w-10/12 '>
-            <Link to={`/movie/${movie.id}`} className='text-xl font-semibold'>{movie.title} <span className='text-base text-gray-400 font-normal'> ( {movie.original_title} ) </span></Link>
+            <Link to={`/movie/${movie.id}`} className='text-xl font-semibold'>{movie.title} <span className='text-base text-gray-400 font-normal lg:block hidden'> ( {movie.original_title} ) </span></Link>
             <p className='text-sm text-gray-400'> {formatDate(movie.release_date)} </p>
-            <p className='mt-2 text-base text-gray-300 h-13 line-clamp-2'>{movie.overview}</p>
+            <p className='mt-2 text-base text-gray-300 h-13 lg:line-clamp-2 line-clamp-1 '>{movie.overview}</p>
         </div>
     </div>
   )

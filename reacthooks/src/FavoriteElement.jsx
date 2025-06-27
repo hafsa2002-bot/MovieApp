@@ -98,14 +98,14 @@ function FavoriteElement({movie, setSuccessMessage}) {
         <div className='p-4 w-10/12 '>
             <Link to={`/movie/${movie.id}`} className='text-xl font-semibold'>{movie.title} <span className='text-base text-gray-400 font-normal'> ( {movie.original_title} ) </span></Link>
             <p className='text-sm text-gray-400'> {formatDate(movie.release_date)} </p>
-            <p className='mt-2 text-base text-gray-300'>{movie.overview}</p>
-            <div className='flex items-center gap-3 mt-4 text-gray-400'>
+            <p className='mt-2 text-base text-gray-300 lg:line-clamp-none md:line-clamp-3 sm:line-clamp-2 line-clamp-1'>{movie.overview}</p>
+            <div className='flex items-center lg:gap-3 gap-2 mt-4 text-gray-400'>
                 <div
                     onClick={(e) => {
                         addToFavoritesFunction(!favorite)
                         e.preventDefault()
                     }}  
-                    className='flex items-center gap-2 px-2.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
+                    className='flex items-center gap-2 lg:px-2.5 px-1.5 py-1 hover:bg-[#333] bg-stone-950 rounded-full text-gray-300 hover:text-white text-sm  cursor-pointer' 
                 >
                     <Heart 
                         className={`

@@ -40,7 +40,7 @@ function MovieCard(props) {
         window.scrollTo(0, 0)
       }}
       alt={`${props.data.original_title}`}
-      className=' relative rounded-xl overflow-hidden shrink-0 lg:h-64 lg:w-48 h-52 w-28'
+      className=' relative rounded-xl overflow-hidden shrink-0 max-w-28 sm:max-w-36 md:max-w-40 lg:max-w-48 aspect-[2/3]'
     >
       {props.data.poster_path
         ? <img className='h-full w-full' src ={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`} alt={`${props.data?.original_title}`}  />

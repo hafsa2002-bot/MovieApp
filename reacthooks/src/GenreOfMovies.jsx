@@ -50,7 +50,7 @@ function GenreOfMovies({BASE_URL, extraParams = {} }) {
         {
             movies ? (
                 <>
-                    <div  className=' grid lg:grid-cols-6 grid-cols-3 lg:gap-10 gap-3 justify-between   mt-9 mb-14 '>
+                    <div  className=' grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 grid-cols-3 lg:gap-10 md:gap-5 gap-3 justify-between   mt-9 mb-14 '>
                         {movies.map((movie, index) => (
                             // <div></div>
                             <MovieCard data = {movie} key={index} />

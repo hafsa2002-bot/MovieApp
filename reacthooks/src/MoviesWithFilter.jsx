@@ -182,27 +182,6 @@ function MoviesWithFilter() {
                 </div>
             </div>
             <div>
-                
-                    {/* {
-                        (filterOption === "popular") ? <PopularMovies /> : 
-                        (filterOption === "action") ? <ActionMovies genreID={28} /> :
-                        (filterOption === "adventure") ? <AdventureMovies genreID={12} /> : 
-                        (filterOption === "animation") ? <AnimationMovies genreID={16} /> :
-                        (filterOption === "comedy") ? <ComedyMovies genreID={35} /> :
-                        (filterOption === "crime") ? <CrimeMovies genreID={80} /> :
-                        (filterOption === "documentary") ? <DocumentaryMovies genreID={99} /> : 
-                        (filterOption === "family") ? <FamilyMovies genreID={10751} /> :
-                        (filterOption === "fantasy") ? <FantasyMovies genreID={14} /> :
-                        (filterOption === "history") ? <HistoryMovies genreID={36} /> :
-                        (filterOption === "horror") ? <HorrorMovies genreID={27} /> : 
-                        (filterOption === "mystery") ? <MysteryMovies genreID={9648} /> :
-                        (filterOption === "scienceFiction") ? <ScienceFictionMovies genreID={878} /> :
-                        (filterOption === "tvMovie") ? <TVMovies genreID={10770} /> :
-                        (filterOption === "thriller") ? <ThrillerMovies genreID={53} /> :
-                        (filterOption === "war") ? <WarMovies genreID={10752} /> :
-                        (filterOption === "western") ? <WesternMovies genreID={37} /> : null
-                    } */}
-                    
                 {
                     (filterOption === "popular")
                     ? <GenreOfMovies BASE_URL={"https://api.themoviedb.org/3/movie/popular"}  extraParams={{}} /> 

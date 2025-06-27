@@ -22,8 +22,8 @@ function Contact() {
       });
   }
   return (
-    <div className='bg-[#0F0F0F] h-screen flex justify-center items-center pt-22 px-25'>
-        <div className=" bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-orange-400 p-[4px] rounded-lg w-1/2 h-[78vh] ">
+    <div className='bg-[#0F0F0F] h-screen flex justify-center items-center pt-22 lg:px-25 px-3'>
+        <div className=" bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-orange-400 p-[4px] rounded-lg lg:w-1/2 md:w-8/12 w-11/12  lg:h-[78vh] ">
           <div className="bg-[#1a1a1a] h-full w-full rounded-lg p-8">
             <h2 className="text-white font-bold text-4xl text-center ">Contact Form</h2>
             <p className='text-stone-400 mt-1 font-semibold text-center mb-10'>Write us a message</p>

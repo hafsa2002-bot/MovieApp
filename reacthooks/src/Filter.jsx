@@ -43,7 +43,7 @@ function Filter() {
     }
 
     return (
-        <div className='pt-28 px-16 pb-12 bg-[#0F0F0F] text-white'>
+        <div className='lg:pt-28 pt-24 lg:px-16 px-6 pb-12 bg-[#0F0F0F] text-white'>
             {searchedMovies.length > 0 ? (
                 <>
                     <h2 className='text-2xl text-stone-300 font-semibold'>Search results for: "{query}"</h2>
